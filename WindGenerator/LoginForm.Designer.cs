@@ -98,11 +98,10 @@
             loginButton.Location = new Point(25, 259);
             loginButton.MinimumSize = new Size(1, 1);
             loginButton.Name = "loginButton";
-            loginButton.Radius = 20;
+            loginButton.Radius = 15;
             loginButton.Size = new Size(125, 44);
             loginButton.TabIndex = 6;
             loginButton.Text = "登录";
-            loginButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // exitButton
             // 
@@ -110,11 +109,10 @@
             exitButton.Location = new Point(183, 259);
             exitButton.MinimumSize = new Size(1, 1);
             exitButton.Name = "exitButton";
-            exitButton.Radius = 20;
+            exitButton.Radius = 15;
             exitButton.Size = new Size(125, 44);
             exitButton.TabIndex = 7;
             exitButton.Text = "退出";
-            exitButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // materialCard1
             // 
