@@ -17,5 +17,22 @@ namespace WindGenerator
         {
             InitializeComponent();
         }
+
+        private void label28_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiRadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void uiRadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
