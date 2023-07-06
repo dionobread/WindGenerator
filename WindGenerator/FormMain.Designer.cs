@@ -125,8 +125,8 @@
             toolStripButton2 = new ToolStripButton();
             toolStripTextBox2 = new ToolStripTextBox();
             toolStripLabel1 = new ToolStripLabel();
-            toolStripButton6 = new ToolStripButton();
             toolStripButton7 = new ToolStripButton();
+            toolStripButton6 = new ToolStripButton();
             toolStripButton8 = new ToolStripButton();
             toolStripButton9 = new ToolStripButton();
             toolStripButton10 = new ToolStripButton();
@@ -247,6 +247,7 @@
             uiTabControl1.SizeMode = TabSizeMode.Fixed;
             uiTabControl1.TabIndex = 0;
             uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
+            uiTabControl1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // emInfoTabPage
             // 
@@ -417,6 +418,7 @@
             removeButton.Size = new Size(78, 33);
             removeButton.TabIndex = 14;
             removeButton.Text = "移除";
+            removeButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // importButton
             // 
@@ -428,7 +430,6 @@
             importButton.Size = new Size(78, 33);
             importButton.TabIndex = 13;
             importButton.Text = "导入";
-            importButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // infoDataGridView
             // 
@@ -590,7 +591,7 @@
             tabPage2.Controls.Add(materialCard2);
             tabPage2.Location = new Point(0, 40);
             tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(1080, 664);
+            tabPage2.Size = new Size(200, 60);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "设备信息管理";
             tabPage2.UseVisualStyleBackColor = true;
@@ -601,7 +602,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripTextBox2, toolStripLabel1, toolStripButton7, toolStripButton6, toolStripButton8, toolStripButton9, toolStripButton10 });
             toolStrip2.Location = new Point(0, 0);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(1080, 27);
+            toolStrip2.Size = new Size(200, 27);
             toolStrip2.TabIndex = 16;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -634,15 +635,6 @@
             toolStripLabel1.Size = new Size(33, 24);
             toolStripLabel1.Text = "0/0";
             // 
-            // toolStripButton6
-            // 
-            toolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
-            toolStripButton6.ImageTransparentColor = Color.Magenta;
-            toolStripButton6.Name = "toolStripButton6";
-            toolStripButton6.Size = new Size(29, 24);
-            toolStripButton6.Text = "toolStripButton1";
-            // 
             // toolStripButton7
             // 
             toolStripButton7.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -651,6 +643,15 @@
             toolStripButton7.Name = "toolStripButton7";
             toolStripButton7.Size = new Size(29, 24);
             toolStripButton7.Text = "toolStripButton6";
+            // 
+            // toolStripButton6
+            // 
+            toolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
+            toolStripButton6.ImageTransparentColor = Color.Magenta;
+            toolStripButton6.Name = "toolStripButton6";
+            toolStripButton6.Size = new Size(29, 24);
+            toolStripButton6.Text = "toolStripButton1";
             // 
             // toolStripButton8
             // 
@@ -787,7 +788,6 @@
             uiButton2.Size = new Size(310, 44);
             uiButton2.TabIndex = 12;
             uiButton2.Text = "老化退役";
-            uiButton2.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton1
             // 
@@ -799,6 +799,7 @@
             uiButton1.Size = new Size(310, 44);
             uiButton1.TabIndex = 11;
             uiButton1.Text = "投入使用";
+            uiButton1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // useTimeTimePicker
             // 
@@ -930,7 +931,7 @@
             tabPage3.Controls.Add(label13);
             tabPage3.Location = new Point(0, 40);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1080, 664);
+            tabPage3.Size = new Size(200, 60);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "设备运行管理";
             tabPage3.UseVisualStyleBackColor = true;
@@ -945,7 +946,6 @@
             fixButton.Size = new Size(125, 44);
             fixButton.TabIndex = 5;
             fixButton.Text = "维修";
-            fixButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // checkButton
             // 
@@ -957,7 +957,6 @@
             checkButton.Size = new Size(125, 44);
             checkButton.TabIndex = 4;
             checkButton.Text = "查询";
-            checkButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiDataGridView3
             // 
@@ -1088,7 +1087,7 @@
             tabPage4.Controls.Add(label15);
             tabPage4.Location = new Point(0, 40);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1080, 664);
+            tabPage4.Size = new Size(200, 60);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "气象信息管理";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1152,6 +1151,7 @@
             uiButton4.Size = new Size(76, 27);
             uiButton4.TabIndex = 7;
             uiButton4.Text = "预测";
+            uiButton4.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton3
             // 
@@ -1162,7 +1162,6 @@
             uiButton3.Size = new Size(76, 27);
             uiButton3.TabIndex = 6;
             uiButton3.Text = "查询";
-            uiButton3.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // label17
             // 
@@ -1452,7 +1451,6 @@
             uiButton6.Size = new Size(358, 44);
             uiButton6.TabIndex = 9;
             uiButton6.Text = "维修";
-            uiButton6.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton5
             // 
@@ -1463,7 +1461,7 @@
             uiButton5.Size = new Size(358, 44);
             uiButton5.TabIndex = 8;
             uiButton5.Text = "派遣维修";
-            uiButton5.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            uiButton5.Click += uiButton5_Click;
             // 
             // uiTimePicker2
             // 
@@ -1625,7 +1623,7 @@
             tabPage6.Font = new Font("微软雅黑", 15F, FontStyle.Bold, GraphicsUnit.Point);
             tabPage6.Location = new Point(0, 40);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1080, 664);
+            tabPage6.Size = new Size(200, 60);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "资源信息管理";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1786,6 +1784,7 @@
             uiButton8.Size = new Size(174, 44);
             uiButton8.TabIndex = 7;
             uiButton8.Text = "消耗";
+            uiButton8.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton7
             // 
@@ -1796,6 +1795,7 @@
             uiButton7.Size = new Size(174, 44);
             uiButton7.TabIndex = 6;
             uiButton7.Text = "补货";
+            uiButton7.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // label26
             // 
