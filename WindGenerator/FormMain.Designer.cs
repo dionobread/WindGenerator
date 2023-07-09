@@ -2016,7 +2016,7 @@
         #endregion
 
         private Sunny.UI.UITabControl uiTabControl1;
-        private TabPage emInfoTabPage;
+        public TabPage emInfoTabPage;
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
