@@ -16,17 +16,17 @@ namespace WindGenerator
 {
     public partial class FormMain : UIForm
     {
-        private DataTable compoentInfo; // 部件信息表
-        private DataTable shipInfo; // 船舶信息表
-        private DataTable climateInfo; // 气象信息表
-        private DataTable equipmentInfo; // 设备运行表
-        private DataTable equipmentRun; // 设备运行表
-        private DataTable fixLog; // 维修记录表
-        private DataTable fixSent; // 维修派工表
-        private DataTable resourceInfo; // 物资信息表
-        private DataTable employee; // 职工表
-        private DataTable employeeInfo; // 职工信息表
-        private DataTable pilePosition; // 桩位表
+        private DataTable compoentInfo = new DataTable(); // 部件信息表
+        private DataTable shipInfo = new DataTable(); // 船舶信息表
+        private DataTable climateInfo = new DataTable(); // 气象信息表
+        private DataTable equipmentInfo = new DataTable(); // 设备运行表
+        private DataTable equipmentRun = new DataTable(); // 设备运行表
+        private DataTable fixLog = new DataTable(); // 维修记录表
+        private DataTable fixSent = new DataTable(); // 维修派工表
+        private DataTable resourceInfo = new DataTable(); // 物资信息表
+        private DataTable employee = new DataTable(); // 职工表
+        private DataTable employeeInfo = new DataTable(); // 职工信息表
+        private DataTable pilePosition = new DataTable(); // 桩位表
 
         public FormMain()
         {
@@ -89,23 +89,19 @@ namespace WindGenerator
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
             sda.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            uiDataGridView12.DataSource = ds.Tables[0];
             connection.Close();
         }
 
         public void filter()
         {
-            SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
-            connection = new SqlConnection(connectionString);
-            connection.Open();
-
+            SqlConnection connection = getConnected();
             string query = "select * from 船舶信息表 where 船舶型号 = '" + uiComboBox2.SelectedItem.ToString() + "' ";
             SqlDataAdapter sda = new SqlDataAdapter(query, connection);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
             sda.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            uiDataGridView12.DataSource = ds.Tables[0];
             connection.Close();
         }
 
