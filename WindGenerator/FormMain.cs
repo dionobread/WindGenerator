@@ -37,6 +37,12 @@ namespace WindGenerator
             // 维修管理活动数据显示
             showTable("select * from 维修派工表", this.fixSent, this.uiDataGridView7);
             showTable("select * from 维修记录表", this.fixLog, this.uiDataGridView8);
+
+            // 物资信息管理数据显示
+            showTable("Select * from 部件信息表 ", this.compoentInfo, this.uiDataGridView9);//显示部件信息
+            showTable("Select * from 船舶信息表 ", this.shipInfo, this.uiDataGridView11);//显示船舶信息
+            showTable("Select * from 物资信息表 ", this.resourceInfo, this.uiDataGridView10);//显示物资信息
+            populate();
         }
 
 
@@ -77,11 +83,7 @@ namespace WindGenerator
 
         public void populate()
         {
-            SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
-            connection = new SqlConnection(connectionString);
-            connection.Open();
-
+            SqlConnection connection = getConnected();
             string query = "select * from 船舶信息表";
             SqlDataAdapter sda = new SqlDataAdapter(query, connection);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
