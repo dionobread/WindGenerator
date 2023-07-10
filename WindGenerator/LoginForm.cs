@@ -13,7 +13,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 

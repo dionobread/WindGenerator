@@ -31,8 +31,13 @@ namespace WindGenerator
         public FormMain()
         {
             InitializeComponent();
-            
+            showTable("Select * from 部件信息表 ", this.compoentInfo, this.uiDataGridView9);//显示部件信息
+            showTable("Select * from 船舶信息表 ", this.shipInfo, this.uiDataGridView11);//显示船舶信息
+            showTable("Select * from 物资信息表 ", this.resourceInfo, this.uiDataGridView10);//显示物资信息
+            populate();
         }
+
+
 
         public void showTable(string sqlQuery, DataTable sqlDataTable, UIDataGridView dataGrid)
         {
@@ -51,7 +56,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -66,6 +71,38 @@ namespace WindGenerator
             }
 
             return connection;
+        }
+
+        public void populate()
+        {
+            SqlConnection connection;
+            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string query = "select * from 船舶信息表";
+            SqlDataAdapter sda = new SqlDataAdapter(query, connection);
+            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+            var ds = new DataSet();
+            sda.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            connection.Close();
+        }
+
+        public void filter()
+        {
+            SqlConnection connection;
+            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string query = "select * from 船舶信息表 where 船舶型号 = '" + uiComboBox2.SelectedItem.ToString() + "' ";
+            SqlDataAdapter sda = new SqlDataAdapter(query, connection);
+            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+            var ds = new DataSet();
+            sda.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            connection.Close();
         }
 
         private void label28_Click(object sender, EventArgs e)
@@ -92,6 +129,16 @@ namespace WindGenerator
 
             // sql
             con.Close();
+        }
+
+        private void uiComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filter();
+        }
+
+        private void uiButton7_Click(object sender, EventArgs e)
+        {
+            populate();
         }
     }
 }

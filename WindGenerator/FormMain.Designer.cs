@@ -181,7 +181,8 @@
             uiDataGridView7 = new Sunny.UI.UIDataGridView();
             label18 = new Label();
             tabPage6 = new TabPage();
-            uiTextBox3 = new Sunny.UI.UITextBox();
+            dataGridView1 = new DataGridView();
+            uiComboBox3 = new Sunny.UI.UIComboBox();
             uiTextBox5 = new Sunny.UI.UITextBox();
             uiTextBox4 = new Sunny.UI.UITextBox();
             label32 = new Label();
@@ -193,7 +194,6 @@
             label29 = new Label();
             label28 = new Label();
             label27 = new Label();
-            listBox1 = new ListBox();
             uiButton8 = new Sunny.UI.UIButton();
             uiButton7 = new Sunny.UI.UIButton();
             label26 = new Label();
@@ -223,6 +223,7 @@
             ((System.ComponentModel.ISupportInitialize)uiDataGridView8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView7).BeginInit();
             tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView11).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView9).BeginInit();
@@ -297,7 +298,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(124, 316);
             label6.Name = "label6";
-            label6.Size = new Size(52, 27);
+            label6.Size = new Size(62, 31);
             label6.TabIndex = 17;
             label6.Text = "部门";
             // 
@@ -330,7 +331,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { doubleForwardToolStripButton, forwardToolStripButton, toolStripTextBox1, toolStripLabel2, backwardToolStripButton, doubleBackwardToolStripButton, addToolStripButton, deleteToolStripButton, saveToolStripButton });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1080, 27);
+            toolStrip1.Size = new Size(1080, 30);
             toolStrip1.TabIndex = 15;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -340,7 +341,7 @@
             doubleForwardToolStripButton.Image = (Image)resources.GetObject("doubleForwardToolStripButton.Image");
             doubleForwardToolStripButton.ImageTransparentColor = Color.Magenta;
             doubleForwardToolStripButton.Name = "doubleForwardToolStripButton";
-            doubleForwardToolStripButton.Size = new Size(29, 24);
+            doubleForwardToolStripButton.Size = new Size(34, 25);
             // 
             // forwardToolStripButton
             // 
@@ -348,19 +349,19 @@
             forwardToolStripButton.Image = (Image)resources.GetObject("forwardToolStripButton.Image");
             forwardToolStripButton.ImageTransparentColor = Color.Magenta;
             forwardToolStripButton.Name = "forwardToolStripButton";
-            forwardToolStripButton.Size = new Size(29, 24);
+            forwardToolStripButton.Size = new Size(34, 25);
             forwardToolStripButton.Text = "toolStripButton2";
             // 
             // toolStripTextBox1
             // 
             toolStripTextBox1.Name = "toolStripTextBox1";
-            toolStripTextBox1.Size = new Size(100, 27);
+            toolStripTextBox1.Size = new Size(100, 30);
             toolStripTextBox1.Text = "0";
             // 
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(33, 24);
+            toolStripLabel2.Size = new Size(40, 25);
             toolStripLabel2.Text = "0/0";
             // 
             // backwardToolStripButton
@@ -369,7 +370,7 @@
             backwardToolStripButton.Image = (Image)resources.GetObject("backwardToolStripButton.Image");
             backwardToolStripButton.ImageTransparentColor = Color.Magenta;
             backwardToolStripButton.Name = "backwardToolStripButton";
-            backwardToolStripButton.Size = new Size(29, 24);
+            backwardToolStripButton.Size = new Size(34, 25);
             backwardToolStripButton.Text = "toolStripButton1";
             // 
             // doubleBackwardToolStripButton
@@ -378,7 +379,7 @@
             doubleBackwardToolStripButton.Image = (Image)resources.GetObject("doubleBackwardToolStripButton.Image");
             doubleBackwardToolStripButton.ImageTransparentColor = Color.Magenta;
             doubleBackwardToolStripButton.Name = "doubleBackwardToolStripButton";
-            doubleBackwardToolStripButton.Size = new Size(29, 24);
+            doubleBackwardToolStripButton.Size = new Size(34, 25);
             doubleBackwardToolStripButton.Text = "toolStripButton6";
             // 
             // addToolStripButton
@@ -387,7 +388,7 @@
             addToolStripButton.Image = (Image)resources.GetObject("addToolStripButton.Image");
             addToolStripButton.ImageTransparentColor = Color.Magenta;
             addToolStripButton.Name = "addToolStripButton";
-            addToolStripButton.Size = new Size(29, 24);
+            addToolStripButton.Size = new Size(34, 25);
             addToolStripButton.Text = "toolStripButton7";
             // 
             // deleteToolStripButton
@@ -396,7 +397,7 @@
             deleteToolStripButton.Image = (Image)resources.GetObject("deleteToolStripButton.Image");
             deleteToolStripButton.ImageTransparentColor = Color.Magenta;
             deleteToolStripButton.Name = "deleteToolStripButton";
-            deleteToolStripButton.Size = new Size(29, 24);
+            deleteToolStripButton.Size = new Size(34, 25);
             deleteToolStripButton.Text = "toolStripButton8";
             // 
             // saveToolStripButton
@@ -405,7 +406,7 @@
             saveToolStripButton.Image = (Image)resources.GetObject("saveToolStripButton.Image");
             saveToolStripButton.ImageTransparentColor = Color.Magenta;
             saveToolStripButton.Name = "saveToolStripButton";
-            saveToolStripButton.Size = new Size(29, 24);
+            saveToolStripButton.Size = new Size(34, 25);
             saveToolStripButton.Text = "toolStripButton9";
             // 
             // removeButton
@@ -483,7 +484,7 @@
             // 
             addressTextBox.Location = new Point(267, 261);
             addressTextBox.Name = "addressTextBox";
-            addressTextBox.Size = new Size(250, 34);
+            addressTextBox.Size = new Size(250, 39);
             addressTextBox.TabIndex = 10;
             // 
             // birthDatetimePicker
@@ -530,7 +531,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(124, 264);
             label5.Name = "label5";
-            label5.Size = new Size(52, 27);
+            label5.Size = new Size(62, 31);
             label5.TabIndex = 6;
             label5.Text = "住址";
             // 
@@ -539,7 +540,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(124, 221);
             label4.Name = "label4";
-            label4.Size = new Size(92, 27);
+            label4.Size = new Size(110, 31);
             label4.TabIndex = 5;
             label4.Text = "出生日期";
             // 
@@ -548,7 +549,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(124, 174);
             label3.Name = "label3";
-            label3.Size = new Size(52, 27);
+            label3.Size = new Size(62, 31);
             label3.TabIndex = 4;
             label3.Text = "性别";
             // 
@@ -557,7 +558,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(124, 124);
             label2.Name = "label2";
-            label2.Size = new Size(52, 27);
+            label2.Size = new Size(62, 31);
             label2.TabIndex = 3;
             label2.Text = "姓名";
             // 
@@ -566,7 +567,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(124, 74);
             label1.Name = "label1";
-            label1.Size = new Size(52, 27);
+            label1.Size = new Size(62, 31);
             label1.TabIndex = 2;
             label1.Text = "账号";
             // 
@@ -574,14 +575,14 @@
             // 
             nameTextBox.Location = new Point(267, 121);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(250, 34);
+            nameTextBox.Size = new Size(250, 39);
             nameTextBox.TabIndex = 1;
             // 
             // accountTextBox
             // 
             accountTextBox.Location = new Point(267, 67);
             accountTextBox.Name = "accountTextBox";
-            accountTextBox.Size = new Size(250, 34);
+            accountTextBox.Size = new Size(250, 39);
             accountTextBox.TabIndex = 0;
             // 
             // tabPage2
@@ -602,7 +603,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripTextBox2, toolStripLabel1, toolStripButton7, toolStripButton6, toolStripButton8, toolStripButton9, toolStripButton10 });
             toolStrip2.Location = new Point(0, 0);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(200, 27);
+            toolStrip2.Size = new Size(200, 34);
             toolStrip2.TabIndex = 16;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -612,7 +613,7 @@
             toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
             toolStripButton1.ImageTransparentColor = Color.Magenta;
             toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(29, 24);
+            toolStripButton1.Size = new Size(34, 29);
             // 
             // toolStripButton2
             // 
@@ -620,19 +621,19 @@
             toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
             toolStripButton2.ImageTransparentColor = Color.Magenta;
             toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(29, 24);
+            toolStripButton2.Size = new Size(34, 29);
             toolStripButton2.Text = "toolStripButton2";
             // 
             // toolStripTextBox2
             // 
             toolStripTextBox2.Name = "toolStripTextBox2";
-            toolStripTextBox2.Size = new Size(100, 27);
+            toolStripTextBox2.Size = new Size(100, 30);
             toolStripTextBox2.Text = "0";
             // 
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(33, 24);
+            toolStripLabel1.Size = new Size(40, 24);
             toolStripLabel1.Text = "0/0";
             // 
             // toolStripButton7
@@ -641,7 +642,7 @@
             toolStripButton7.Image = (Image)resources.GetObject("toolStripButton7.Image");
             toolStripButton7.ImageTransparentColor = Color.Magenta;
             toolStripButton7.Name = "toolStripButton7";
-            toolStripButton7.Size = new Size(29, 24);
+            toolStripButton7.Size = new Size(34, 24);
             toolStripButton7.Text = "toolStripButton6";
             // 
             // toolStripButton6
@@ -650,7 +651,7 @@
             toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
             toolStripButton6.ImageTransparentColor = Color.Magenta;
             toolStripButton6.Name = "toolStripButton6";
-            toolStripButton6.Size = new Size(29, 24);
+            toolStripButton6.Size = new Size(34, 24);
             toolStripButton6.Text = "toolStripButton1";
             // 
             // toolStripButton8
@@ -659,7 +660,7 @@
             toolStripButton8.Image = (Image)resources.GetObject("toolStripButton8.Image");
             toolStripButton8.ImageTransparentColor = Color.Magenta;
             toolStripButton8.Name = "toolStripButton8";
-            toolStripButton8.Size = new Size(29, 24);
+            toolStripButton8.Size = new Size(34, 24);
             toolStripButton8.Text = "toolStripButton7";
             // 
             // toolStripButton9
@@ -668,7 +669,7 @@
             toolStripButton9.Image = (Image)resources.GetObject("toolStripButton9.Image");
             toolStripButton9.ImageTransparentColor = Color.Magenta;
             toolStripButton9.Name = "toolStripButton9";
-            toolStripButton9.Size = new Size(29, 24);
+            toolStripButton9.Size = new Size(34, 24);
             toolStripButton9.Text = "toolStripButton8";
             // 
             // toolStripButton10
@@ -677,7 +678,7 @@
             toolStripButton10.Image = (Image)resources.GetObject("toolStripButton10.Image");
             toolStripButton10.ImageTransparentColor = Color.Magenta;
             toolStripButton10.Name = "toolStripButton10";
-            toolStripButton10.Size = new Size(29, 24);
+            toolStripButton10.Size = new Size(34, 24);
             toolStripButton10.Text = "toolStripButton9";
             // 
             // uiDataGridView1
@@ -774,7 +775,7 @@
             label8.AutoSize = true;
             label8.Location = new Point(17, 336);
             label8.Name = "label8";
-            label8.Size = new Size(72, 27);
+            label8.Size = new Size(86, 31);
             label8.TabIndex = 13;
             label8.Text = "桩位号";
             // 
@@ -881,7 +882,7 @@
             label11.AutoSize = true;
             label11.Location = new Point(17, 275);
             label11.Name = "label11";
-            label11.Size = new Size(132, 27);
+            label11.Size = new Size(158, 31);
             label11.TabIndex = 4;
             label11.Text = "投入使用时间";
             // 
@@ -890,7 +891,7 @@
             label10.AutoSize = true;
             label10.Location = new Point(17, 215);
             label10.Name = "label10";
-            label10.Size = new Size(92, 27);
+            label10.Size = new Size(110, 31);
             label10.TabIndex = 3;
             label10.Text = "生产厂家";
             // 
@@ -899,7 +900,7 @@
             label9.AutoSize = true;
             label9.Location = new Point(17, 155);
             label9.Name = "label9";
-            label9.Size = new Size(92, 27);
+            label9.Size = new Size(110, 31);
             label9.TabIndex = 2;
             label9.Text = "额定功率";
             // 
@@ -908,7 +909,7 @@
             label12.AutoSize = true;
             label12.Location = new Point(17, 95);
             label12.Name = "label12";
-            label12.Size = new Size(92, 27);
+            label12.Size = new Size(110, 31);
             label12.TabIndex = 1;
             label12.Text = "设备类型";
             // 
@@ -917,7 +918,7 @@
             label7.AutoSize = true;
             label7.Location = new Point(17, 40);
             label7.Name = "label7";
-            label7.Size = new Size(92, 27);
+            label7.Size = new Size(110, 31);
             label7.TabIndex = 0;
             label7.Text = "设备编号";
             // 
@@ -1012,7 +1013,7 @@
             label14.Font = new Font("微软雅黑", 15F, FontStyle.Bold, GraphicsUnit.Point);
             label14.Location = new Point(210, 33);
             label14.Name = "label14";
-            label14.Size = new Size(140, 33);
+            label14.Size = new Size(167, 40);
             label14.TabIndex = 2;
             label14.Text = "待维修设备";
             // 
@@ -1070,7 +1071,7 @@
             label13.Font = new Font("微软雅黑", 15F, FontStyle.Bold, GraphicsUnit.Point);
             label13.Location = new Point(717, 33);
             label13.Name = "label13";
-            label13.Size = new Size(165, 33);
+            label13.Size = new Size(197, 40);
             label13.TabIndex = 0;
             label13.Text = "设备运行情况";
             // 
@@ -1169,7 +1170,7 @@
             label17.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label17.Location = new Point(600, 197);
             label17.Name = "label17";
-            label17.Size = new Size(92, 27);
+            label17.Size = new Size(110, 31);
             label17.TabIndex = 5;
             label17.Text = "天气预测";
             // 
@@ -1248,7 +1249,7 @@
             label16.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label16.Location = new Point(600, 16);
             label16.Name = "label16";
-            label16.Size = new Size(132, 27);
+            label16.Size = new Size(158, 31);
             label16.TabIndex = 2;
             label16.Text = "查询天气状况";
             // 
@@ -1306,7 +1307,7 @@
             label15.Font = new Font("微软雅黑", 15F, FontStyle.Bold, GraphicsUnit.Point);
             label15.Location = new Point(35, 11);
             label15.Name = "label15";
-            label15.Size = new Size(140, 33);
+            label15.Size = new Size(167, 40);
             label15.TabIndex = 0;
             label15.Text = "气象信息表";
             // 
@@ -1330,7 +1331,7 @@
             tabPage5.Controls.Add(label18);
             tabPage5.Location = new Point(0, 40);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1080, 664);
+            tabPage5.Size = new Size(200, 60);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "维修活动管理";
             tabPage5.UseVisualStyleBackColor = true;
@@ -1355,7 +1356,7 @@
             label33.AutoSize = true;
             label33.Location = new Point(628, 233);
             label33.Name = "label33";
-            label33.Size = new Size(92, 27);
+            label33.Size = new Size(110, 31);
             label33.TabIndex = 14;
             label33.Text = "设备编号";
             // 
@@ -1380,7 +1381,7 @@
             label23.AutoSize = true;
             label23.Location = new Point(628, 183);
             label23.Name = "label23";
-            label23.Size = new Size(92, 27);
+            label23.Size = new Size(110, 31);
             label23.TabIndex = 12;
             label23.Text = "维修类型";
             // 
@@ -1438,7 +1439,7 @@
             label22.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label22.Location = new Point(33, 349);
             label22.Name = "label22";
-            label22.Size = new Size(92, 27);
+            label22.Size = new Size(110, 31);
             label22.TabIndex = 10;
             label22.Text = "维护日志";
             // 
@@ -1517,7 +1518,7 @@
             label21.AutoSize = true;
             label21.Location = new Point(628, 131);
             label21.Name = "label21";
-            label21.Size = new Size(132, 27);
+            label21.Size = new Size(158, 31);
             label21.TabIndex = 4;
             label21.Text = "维修开始时间";
             // 
@@ -1526,7 +1527,7 @@
             label20.AutoSize = true;
             label20.Location = new Point(628, 79);
             label20.Name = "label20";
-            label20.Size = new Size(132, 27);
+            label20.Size = new Size(158, 31);
             label20.TabIndex = 3;
             label20.Text = "维修船舶编号";
             // 
@@ -1535,7 +1536,7 @@
             label19.AutoSize = true;
             label19.Location = new Point(628, 28);
             label19.Name = "label19";
-            label19.Size = new Size(132, 27);
+            label19.Size = new Size(158, 31);
             label19.TabIndex = 2;
             label19.Text = "维修人员工号";
             // 
@@ -1593,13 +1594,14 @@
             label18.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label18.Location = new Point(33, 14);
             label18.Name = "label18";
-            label18.Size = new Size(112, 27);
+            label18.Size = new Size(134, 31);
             label18.TabIndex = 0;
             label18.Text = "待维修设备";
             // 
             // tabPage6
             // 
-            tabPage6.Controls.Add(uiTextBox3);
+            tabPage6.Controls.Add(dataGridView1);
+            tabPage6.Controls.Add(uiComboBox3);
             tabPage6.Controls.Add(uiTextBox5);
             tabPage6.Controls.Add(uiTextBox4);
             tabPage6.Controls.Add(label32);
@@ -1611,7 +1613,6 @@
             tabPage6.Controls.Add(label29);
             tabPage6.Controls.Add(label28);
             tabPage6.Controls.Add(label27);
-            tabPage6.Controls.Add(listBox1);
             tabPage6.Controls.Add(uiButton8);
             tabPage6.Controls.Add(uiButton7);
             tabPage6.Controls.Add(label26);
@@ -1623,25 +1624,38 @@
             tabPage6.Font = new Font("微软雅黑", 15F, FontStyle.Bold, GraphicsUnit.Point);
             tabPage6.Location = new Point(0, 40);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(200, 60);
+            tabPage6.Size = new Size(1080, 664);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "资源信息管理";
             tabPage6.UseVisualStyleBackColor = true;
             // 
-            // uiTextBox3
+            // dataGridView1
             // 
-            uiTextBox3.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            uiTextBox3.Location = new Point(910, 86);
-            uiTextBox3.Margin = new Padding(4, 5, 4, 5);
-            uiTextBox3.MinimumSize = new Size(1, 16);
-            uiTextBox3.Name = "uiTextBox3";
-            uiTextBox3.Padding = new Padding(5);
-            uiTextBox3.ShowText = false;
-            uiTextBox3.Size = new Size(116, 36);
-            uiTextBox3.TabIndex = 20;
-            uiTextBox3.Text = "uiTextBox3";
-            uiTextBox3.TextAlignment = ContentAlignment.MiddleLeft;
-            uiTextBox3.Watermark = "";
+            dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.GridColor = SystemColors.Highlight;
+            dataGridView1.Location = new Point(609, 207);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 32;
+            dataGridView1.Size = new Size(419, 147);
+            dataGridView1.TabIndex = 21;
+            // 
+            // uiComboBox3
+            // 
+            uiComboBox3.DataSource = null;
+            uiComboBox3.FillColor = Color.White;
+            uiComboBox3.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiComboBox3.Items.AddRange(new object[] { "叶片", "齿轮箱", "发电机", "变桨轴承" });
+            uiComboBox3.Location = new Point(912, 86);
+            uiComboBox3.Margin = new Padding(4, 5, 4, 5);
+            uiComboBox3.MinimumSize = new Size(63, 0);
+            uiComboBox3.Name = "uiComboBox3";
+            uiComboBox3.Padding = new Padding(0, 0, 30, 2);
+            uiComboBox3.Size = new Size(116, 36);
+            uiComboBox3.TabIndex = 17;
+            uiComboBox3.TextAlignment = ContentAlignment.MiddleLeft;
+            uiComboBox3.Watermark = "";
             // 
             // uiTextBox5
             // 
@@ -1678,7 +1692,7 @@
             label32.AutoSize = true;
             label32.Location = new Point(838, 86);
             label32.Name = "label32";
-            label32.Size = new Size(65, 33);
+            label32.Size = new Size(77, 40);
             label32.TabIndex = 17;
             label32.Text = "名称";
             // 
@@ -1687,6 +1701,7 @@
             uiComboBox2.DataSource = null;
             uiComboBox2.FillColor = Color.White;
             uiComboBox2.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiComboBox2.Items.AddRange(new object[] { "大型", "中型", "小型" });
             uiComboBox2.Location = new Point(681, 86);
             uiComboBox2.Margin = new Padding(4, 5, 4, 5);
             uiComboBox2.MinimumSize = new Size(63, 0);
@@ -1694,9 +1709,9 @@
             uiComboBox2.Padding = new Padding(0, 0, 30, 2);
             uiComboBox2.Size = new Size(116, 36);
             uiComboBox2.TabIndex = 16;
-            uiComboBox2.Text = "uiComboBox2";
             uiComboBox2.TextAlignment = ContentAlignment.MiddleLeft;
             uiComboBox2.Watermark = "";
+            uiComboBox2.SelectedIndexChanged += uiComboBox2_SelectedIndexChanged;
             // 
             // uiRadioButton2
             // 
@@ -1723,7 +1738,7 @@
             label31.AutoSize = true;
             label31.Location = new Point(609, 86);
             label31.Name = "label31";
-            label31.Size = new Size(65, 33);
+            label31.Size = new Size(77, 40);
             label31.TabIndex = 13;
             label31.Text = "类型";
             // 
@@ -1732,7 +1747,7 @@
             label30.AutoSize = true;
             label30.Location = new Point(838, 153);
             label30.Name = "label30";
-            label30.Size = new Size(65, 33);
+            label30.Size = new Size(77, 40);
             label30.TabIndex = 12;
             label30.Text = "数量";
             // 
@@ -1741,7 +1756,7 @@
             label29.AutoSize = true;
             label29.Location = new Point(609, 153);
             label29.Name = "label29";
-            label29.Size = new Size(65, 33);
+            label29.Size = new Size(77, 40);
             label29.TabIndex = 11;
             label29.Text = "数量";
             // 
@@ -1750,7 +1765,7 @@
             label28.AutoSize = true;
             label28.Location = new Point(838, 26);
             label28.Name = "label28";
-            label28.Size = new Size(65, 33);
+            label28.Size = new Size(77, 40);
             label28.TabIndex = 10;
             label28.Text = "物资";
             label28.Click += label28_Click;
@@ -1760,20 +1775,10 @@
             label27.AutoSize = true;
             label27.Location = new Point(609, 26);
             label27.Name = "label27";
-            label27.Size = new Size(65, 33);
+            label27.Size = new Size(77, 40);
             label27.TabIndex = 9;
             label27.Text = "船舶";
             label27.Click += label27_Click;
-            // 
-            // listBox1
-            // 
-            listBox1.Font = new Font("微软雅黑", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 24;
-            listBox1.Location = new Point(609, 206);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(419, 148);
-            listBox1.TabIndex = 8;
             // 
             // uiButton8
             // 
@@ -1796,13 +1801,14 @@
             uiButton7.TabIndex = 6;
             uiButton7.Text = "补货";
             uiButton7.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            uiButton7.Click += uiButton7_Click;
             // 
             // label26
             // 
             label26.AutoSize = true;
             label26.Location = new Point(609, 419);
             label26.Name = "label26";
-            label26.Size = new Size(165, 33);
+            label26.Size = new Size(197, 40);
             label26.TabIndex = 5;
             label26.Text = "物资信息管理";
             // 
@@ -1811,7 +1817,7 @@
             label25.AutoSize = true;
             label25.Location = new Point(18, 419);
             label25.Name = "label25";
-            label25.Size = new Size(165, 33);
+            label25.Size = new Size(197, 40);
             label25.TabIndex = 4;
             label25.Text = "船舶信息管理";
             // 
@@ -1821,7 +1827,7 @@
             label24.Font = new Font("微软雅黑", 15F, FontStyle.Bold, GraphicsUnit.Point);
             label24.Location = new Point(18, 16);
             label24.Name = "label24";
-            label24.Size = new Size(165, 33);
+            label24.Size = new Size(197, 40);
             label24.TabIndex = 3;
             label24.Text = "部件信息管理";
             // 
@@ -2007,6 +2013,7 @@
             ((System.ComponentModel.ISupportInitialize)uiDataGridView7).EndInit();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView11).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView10).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView9).EndInit();
@@ -2115,7 +2122,6 @@
         private Sunny.UI.UIDataGridView uiDataGridView11;
         private Sunny.UI.UIDataGridView uiDataGridView10;
         private Label label27;
-        private ListBox listBox1;
         private Sunny.UI.UIButton uiButton8;
         private Sunny.UI.UIButton uiButton7;
         private Sunny.UI.UITextBox uiTextBox5;
@@ -2128,8 +2134,9 @@
         private Label label30;
         private Label label29;
         private Label label28;
-        private Sunny.UI.UITextBox uiTextBox3;
         private Sunny.UI.UITextBox uiTextBox6;
         private Label label33;
+        private Sunny.UI.UIComboBox uiComboBox3;
+        private DataGridView dataGridView1;
     }
 }
