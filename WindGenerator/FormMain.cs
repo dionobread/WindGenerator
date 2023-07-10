@@ -39,6 +39,8 @@ namespace WindGenerator
             showTable("select * from 维修记录表", this.fixLog, this.uiDataGridView8);
         }
 
+
+
         public void showTable(string sqlQuery, DataTable sqlDataTable, UIDataGridView dataGrid)
         {
             // 维修活动管理-派遣维修按钮
@@ -73,6 +75,38 @@ namespace WindGenerator
             return connection;
         }
 
+        public void populate()
+        {
+            SqlConnection connection;
+            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string query = "select * from 船舶信息表";
+            SqlDataAdapter sda = new SqlDataAdapter(query, connection);
+            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+            var ds = new DataSet();
+            sda.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            connection.Close();
+        }
+
+        public void filter()
+        {
+            SqlConnection connection;
+            string connectionString = "Data Source=LAPTOP-P5D3L2Q5\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string query = "select * from 船舶信息表 where 船舶型号 = '" + uiComboBox2.SelectedItem.ToString() + "' ";
+            SqlDataAdapter sda = new SqlDataAdapter(query, connection);
+            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+            var ds = new DataSet();
+            sda.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            connection.Close();
+        }
+
         private void label28_Click(object sender, EventArgs e)
         {
 
@@ -97,6 +131,16 @@ namespace WindGenerator
 
             // sql
             con.Close();
+        }
+
+        private void uiComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filter();
+        }
+
+        private void uiButton7_Click(object sender, EventArgs e)
+        {
+            populate();
         }
     }
 }
