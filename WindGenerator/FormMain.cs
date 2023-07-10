@@ -136,9 +136,5 @@ namespace WindGenerator
             filter();
         }
 
-        private void uiButton7_Click(object sender, EventArgs e)
-        {
-            populate();
-        }
     }
 }
