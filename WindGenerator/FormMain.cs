@@ -31,8 +31,12 @@ namespace WindGenerator
         public FormMain()
         {
             InitializeComponent();
+            // 气象信息管理数据显示
             showTable("select * from 气象信息表", this.climateInfo, this.uiDataGridView4);
 
+            // 维修管理活动数据显示
+            showTable("select * from 维修派工表", this.fixSent, this.uiDataGridView7);
+            showTable("select * from 维修记录表", this.fixLog, this.uiDataGridView8);
         }
 
         public void showTable(string sqlQuery, DataTable sqlDataTable, UIDataGridView dataGrid)
@@ -52,7 +56,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-VEMPUMO4;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 

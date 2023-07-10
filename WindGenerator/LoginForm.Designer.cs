@@ -103,7 +103,6 @@
             loginButton.Size = new Size(125, 44);
             loginButton.TabIndex = 6;
             loginButton.Text = "登录";
-            loginButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             loginButton.Click += loginButton_Click_1;
             // 
             // exitButton
@@ -116,7 +115,6 @@
             exitButton.Size = new Size(125, 44);
             exitButton.TabIndex = 7;
             exitButton.Text = "退出";
-            exitButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             exitButton.Click += exitButton_Click;
             // 
             // materialCard1
