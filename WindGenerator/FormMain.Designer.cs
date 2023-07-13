@@ -29,6 +29,71 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle32 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle33 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle34 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle35 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle36 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle37 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle38 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle39 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle40 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle41 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle42 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle43 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle44 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle45 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle46 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle47 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle48 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle49 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle50 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle51 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle52 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle53 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle54 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle55 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle56 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle57 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle58 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle59 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle60 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle61 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle62 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle63 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle64 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle65 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle76 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle77 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle78 = new DataGridViewCellStyle();
@@ -252,6 +317,8 @@
             uiTabControl1.SizeMode = TabSizeMode.Fixed;
             uiTabControl1.TabIndex = 0;
             uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
+            uiTabControl1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            uiTabControl1.SelectedIndexChanged += uiTabControl1_SelectedIndexChanged;
             // 
             // emInfoTabPage
             // 
@@ -422,6 +489,7 @@
             removeButton.Size = new Size(78, 33);
             removeButton.TabIndex = 14;
             removeButton.Text = "移除";
+            removeButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // importButton
             // 
@@ -433,7 +501,6 @@
             importButton.Size = new Size(78, 33);
             importButton.TabIndex = 13;
             importButton.Text = "导入";
-            importButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // infoDataGridView
             // 
@@ -792,7 +859,6 @@
             uiButton2.Size = new Size(310, 44);
             uiButton2.TabIndex = 12;
             uiButton2.Text = "老化退役";
-            uiButton2.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton1
             // 
@@ -804,6 +870,7 @@
             uiButton1.Size = new Size(310, 44);
             uiButton1.TabIndex = 11;
             uiButton1.Text = "投入使用";
+            uiButton1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // useTimeTimePicker
             // 
@@ -950,7 +1017,6 @@
             fixButton.Size = new Size(125, 44);
             fixButton.TabIndex = 5;
             fixButton.Text = "维修";
-            fixButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // checkButton
             // 
@@ -962,7 +1028,6 @@
             checkButton.Size = new Size(125, 44);
             checkButton.TabIndex = 4;
             checkButton.Text = "查询";
-            checkButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiDataGridView3
             // 
@@ -1093,7 +1158,7 @@
             tabPage4.Controls.Add(label15);
             tabPage4.Location = new Point(0, 40);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(200, 60);
+            tabPage4.Size = new Size(1080, 664);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "气象信息管理";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1157,6 +1222,7 @@
             uiButton4.Size = new Size(76, 27);
             uiButton4.TabIndex = 7;
             uiButton4.Text = "预测";
+            uiButton4.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton3
             // 
@@ -1167,7 +1233,6 @@
             uiButton3.Size = new Size(76, 27);
             uiButton3.TabIndex = 6;
             uiButton3.Text = "查询";
-            uiButton3.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // label17
             // 
@@ -1455,7 +1520,6 @@
             uiButton5.Size = new Size(358, 44);
             uiButton5.TabIndex = 8;
             uiButton5.Text = "派遣维修";
-            uiButton5.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             uiButton5.Click += uiButton5_Click;
             // 
             // uiTimePicker2
@@ -1619,6 +1683,54 @@
             tabPage6.TabIndex = 5;
             tabPage6.Text = "资源信息管理";
             tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // uiDataGridView12
+            // 
+            dataGridViewCellStyle46.BackColor = Color.FromArgb(235, 243, 255);
+            uiDataGridView12.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
+            uiDataGridView12.BackgroundColor = Color.White;
+            uiDataGridView12.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle47.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle47.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle47.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle47.ForeColor = Color.White;
+            dataGridViewCellStyle47.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle47.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle47.WrapMode = DataGridViewTriState.True;
+            uiDataGridView12.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle47;
+            uiDataGridView12.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle48.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle48.BackColor = SystemColors.Window;
+            dataGridViewCellStyle48.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle48.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle48.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle48.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle48.WrapMode = DataGridViewTriState.False;
+            uiDataGridView12.DefaultCellStyle = dataGridViewCellStyle48;
+            uiDataGridView12.EnableHeadersVisualStyles = false;
+            uiDataGridView12.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiDataGridView12.GridColor = Color.FromArgb(80, 160, 255);
+            uiDataGridView12.Location = new Point(609, 197);
+            uiDataGridView12.Name = "uiDataGridView12";
+            dataGridViewCellStyle49.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle49.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle49.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle49.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle49.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle49.SelectionForeColor = Color.White;
+            dataGridViewCellStyle49.WrapMode = DataGridViewTriState.True;
+            uiDataGridView12.RowHeadersDefaultCellStyle = dataGridViewCellStyle49;
+            uiDataGridView12.RowHeadersWidth = 51;
+            dataGridViewCellStyle50.BackColor = Color.White;
+            dataGridViewCellStyle50.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiDataGridView12.RowsDefaultCellStyle = dataGridViewCellStyle50;
+            uiDataGridView12.RowTemplate.Height = 29;
+            uiDataGridView12.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
+            uiDataGridView12.SelectedIndex = -1;
+            uiDataGridView12.Size = new Size(419, 157);
+            uiDataGridView12.StripeOddColor = Color.FromArgb(235, 243, 255);
+            uiDataGridView12.Style = Sunny.UI.UIStyle.Custom;
+            uiDataGridView12.TabIndex = 21;
             // 
             // uiDataGridView12
             // 
@@ -1816,6 +1928,7 @@
             uiButton8.Size = new Size(174, 44);
             uiButton8.TabIndex = 7;
             uiButton8.Text = "消耗";
+            uiButton8.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton7
             // 
@@ -1826,6 +1939,7 @@
             uiButton7.Size = new Size(174, 44);
             uiButton7.TabIndex = 6;
             uiButton7.Text = "补货";
+            uiButton7.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             uiButton7.Click += uiButton7_Click;
             // 
             // label26
