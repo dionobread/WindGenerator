@@ -74,6 +74,11 @@
             DataGridViewCellStyle dataGridViewCellStyle43 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle44 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle45 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle46 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle47 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle48 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle49 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle50 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle51 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle52 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle53 = new DataGridViewCellStyle();
@@ -89,11 +94,6 @@
             DataGridViewCellStyle dataGridViewCellStyle63 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle64 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle65 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle46 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle47 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle48 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle49 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle50 = new DataGridViewCellStyle();
             uiTabControl1 = new Sunny.UI.UITabControl();
             emInfoTabPage = new TabPage();
             depComboBox = new Sunny.UI.UIComboBox();
@@ -159,11 +159,11 @@
             uiDataGridView2 = new Sunny.UI.UIDataGridView();
             label13 = new Label();
             tabPage4 = new TabPage();
+            uiDatetimePicker1 = new Sunny.UI.UIDatetimePicker();
             uiDataGridView6 = new Sunny.UI.UIDataGridView();
             uiButton4 = new Sunny.UI.UIButton();
             uiButton3 = new Sunny.UI.UIButton();
             label17 = new Label();
-            uiTimePicker1 = new Sunny.UI.UITimePicker();
             uiDataGridView5 = new Sunny.UI.UIDataGridView();
             label16 = new Label();
             uiDataGridView4 = new Sunny.UI.UIDataGridView();
@@ -186,6 +186,7 @@
             uiDataGridView7 = new Sunny.UI.UIDataGridView();
             label18 = new Label();
             tabPage6 = new TabPage();
+            uiDataGridView12 = new Sunny.UI.UIDataGridView();
             uiComboBox3 = new Sunny.UI.UIComboBox();
             uiTextBox5 = new Sunny.UI.UITextBox();
             uiTextBox4 = new Sunny.UI.UITextBox();
@@ -206,7 +207,6 @@
             uiDataGridView11 = new Sunny.UI.UIDataGridView();
             uiDataGridView10 = new Sunny.UI.UIDataGridView();
             uiDataGridView9 = new Sunny.UI.UIDataGridView();
-            uiDataGridView12 = new Sunny.UI.UIDataGridView();
             uiTabControl1.SuspendLayout();
             emInfoTabPage.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -228,10 +228,10 @@
             ((System.ComponentModel.ISupportInitialize)uiDataGridView8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView7).BeginInit();
             tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)uiDataGridView12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView11).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiDataGridView12).BeginInit();
             SuspendLayout();
             // 
             // uiTabControl1
@@ -253,6 +253,7 @@
             uiTabControl1.SizeMode = TabSizeMode.Fixed;
             uiTabControl1.TabIndex = 0;
             uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
+            uiTabControl1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // emInfoTabPage
             // 
@@ -423,6 +424,7 @@
             removeButton.Size = new Size(78, 33);
             removeButton.TabIndex = 14;
             removeButton.Text = "移除";
+            removeButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // importButton
             // 
@@ -434,7 +436,6 @@
             importButton.Size = new Size(78, 33);
             importButton.TabIndex = 13;
             importButton.Text = "导入";
-            importButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // infoDataGridView
             // 
@@ -793,7 +794,6 @@
             uiButton2.Size = new Size(310, 44);
             uiButton2.TabIndex = 12;
             uiButton2.Text = "老化退役";
-            uiButton2.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton1
             // 
@@ -805,6 +805,7 @@
             uiButton1.Size = new Size(310, 44);
             uiButton1.TabIndex = 11;
             uiButton1.Text = "投入使用";
+            uiButton1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // useTimeTimePicker
             // 
@@ -951,7 +952,6 @@
             fixButton.Size = new Size(125, 44);
             fixButton.TabIndex = 5;
             fixButton.Text = "维修";
-            fixButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // checkButton
             // 
@@ -963,7 +963,6 @@
             checkButton.Size = new Size(125, 44);
             checkButton.TabIndex = 4;
             checkButton.Text = "查询";
-            checkButton.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiDataGridView3
             // 
@@ -1083,21 +1082,40 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(uiDatetimePicker1);
             tabPage4.Controls.Add(uiDataGridView6);
             tabPage4.Controls.Add(uiButton4);
             tabPage4.Controls.Add(uiButton3);
             tabPage4.Controls.Add(label17);
-            tabPage4.Controls.Add(uiTimePicker1);
             tabPage4.Controls.Add(uiDataGridView5);
             tabPage4.Controls.Add(label16);
             tabPage4.Controls.Add(uiDataGridView4);
             tabPage4.Controls.Add(label15);
             tabPage4.Location = new Point(0, 40);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(200, 60);
+            tabPage4.Size = new Size(1080, 664);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "气象信息管理";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // uiDatetimePicker1
+            // 
+            uiDatetimePicker1.FillColor = Color.White;
+            uiDatetimePicker1.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiDatetimePicker1.Location = new Point(600, 79);
+            uiDatetimePicker1.Margin = new Padding(4, 5, 4, 5);
+            uiDatetimePicker1.MaxLength = 19;
+            uiDatetimePicker1.MinimumSize = new Size(63, 0);
+            uiDatetimePicker1.Name = "uiDatetimePicker1";
+            uiDatetimePicker1.Padding = new Padding(0, 0, 30, 2);
+            uiDatetimePicker1.Size = new Size(250, 36);
+            uiDatetimePicker1.SymbolDropDown = 61555;
+            uiDatetimePicker1.SymbolNormal = 61555;
+            uiDatetimePicker1.TabIndex = 9;
+            uiDatetimePicker1.Text = "2023-07-13 16:00:00";
+            uiDatetimePicker1.TextAlignment = ContentAlignment.MiddleLeft;
+            uiDatetimePicker1.Value = new DateTime(2023, 7, 13, 16, 0, 0, 0);
+            uiDatetimePicker1.Watermark = "";
             // 
             // uiDataGridView6
             // 
@@ -1125,7 +1143,7 @@
             uiDataGridView6.EnableHeadersVisualStyles = false;
             uiDataGridView6.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
             uiDataGridView6.GridColor = Color.FromArgb(104, 173, 255);
-            uiDataGridView6.Location = new Point(600, 246);
+            uiDataGridView6.Location = new Point(600, 311);
             uiDataGridView6.Name = "uiDataGridView6";
             dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle24.BackColor = Color.FromArgb(243, 249, 255);
@@ -1145,59 +1163,42 @@
             uiDataGridView6.RowTemplate.Height = 29;
             uiDataGridView6.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
             uiDataGridView6.SelectedIndex = -1;
-            uiDataGridView6.Size = new Size(441, 373);
+            uiDataGridView6.Size = new Size(441, 308);
             uiDataGridView6.Style = Sunny.UI.UIStyle.Custom;
             uiDataGridView6.TabIndex = 8;
             // 
             // uiButton4
             // 
             uiButton4.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            uiButton4.Location = new Point(965, 197);
+            uiButton4.Location = new Point(965, 267);
             uiButton4.MinimumSize = new Size(1, 1);
             uiButton4.Name = "uiButton4";
             uiButton4.Size = new Size(76, 27);
             uiButton4.TabIndex = 7;
             uiButton4.Text = "预测";
+            uiButton4.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            uiButton4.Click += uiButton4_Click;
             // 
             // uiButton3
             // 
             uiButton3.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            uiButton3.Location = new Point(965, 17);
+            uiButton3.Location = new Point(965, 88);
             uiButton3.MinimumSize = new Size(1, 1);
             uiButton3.Name = "uiButton3";
             uiButton3.Size = new Size(76, 27);
             uiButton3.TabIndex = 6;
             uiButton3.Text = "查询";
-            uiButton3.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            uiButton3.Click += uiButton3_Click;
             // 
             // label17
             // 
             label17.AutoSize = true;
             label17.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label17.Location = new Point(600, 197);
+            label17.Location = new Point(600, 267);
             label17.Name = "label17";
             label17.Size = new Size(92, 27);
             label17.TabIndex = 5;
             label17.Text = "天气预测";
-            // 
-            // uiTimePicker1
-            // 
-            uiTimePicker1.FillColor = Color.White;
-            uiTimePicker1.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            uiTimePicker1.Location = new Point(753, 11);
-            uiTimePicker1.Margin = new Padding(4, 5, 4, 5);
-            uiTimePicker1.MaxLength = 8;
-            uiTimePicker1.MinimumSize = new Size(63, 0);
-            uiTimePicker1.Name = "uiTimePicker1";
-            uiTimePicker1.Padding = new Padding(0, 0, 30, 2);
-            uiTimePicker1.Size = new Size(188, 36);
-            uiTimePicker1.SymbolDropDown = 61555;
-            uiTimePicker1.SymbolNormal = 61555;
-            uiTimePicker1.TabIndex = 4;
-            uiTimePicker1.Text = "10:38:55";
-            uiTimePicker1.TextAlignment = ContentAlignment.MiddleLeft;
-            uiTimePicker1.Value = new DateTime(2023, 6, 29, 10, 38, 55, 937);
-            uiTimePicker1.Watermark = "";
             // 
             // uiDataGridView5
             // 
@@ -1225,7 +1226,7 @@
             uiDataGridView5.EnableHeadersVisualStyles = false;
             uiDataGridView5.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
             uiDataGridView5.GridColor = Color.FromArgb(104, 173, 255);
-            uiDataGridView5.Location = new Point(600, 56);
+            uiDataGridView5.Location = new Point(600, 132);
             uiDataGridView5.Name = "uiDataGridView5";
             dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle29.BackColor = Color.FromArgb(243, 249, 255);
@@ -1253,7 +1254,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label16.Location = new Point(600, 16);
+            label16.Location = new Point(600, 31);
             label16.Name = "label16";
             label16.Size = new Size(132, 27);
             label16.TabIndex = 2;
@@ -1302,7 +1303,7 @@
             uiDataGridView4.RowTemplate.Height = 29;
             uiDataGridView4.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
             uiDataGridView4.SelectedIndex = -1;
-            uiDataGridView4.Size = new Size(482, 563);
+            uiDataGridView4.Size = new Size(529, 563);
             uiDataGridView4.StripeOddColor = Color.FromArgb(235, 243, 255);
             uiDataGridView4.Style = Sunny.UI.UIStyle.Custom;
             uiDataGridView4.TabIndex = 1;
@@ -1458,7 +1459,6 @@
             uiButton6.Size = new Size(358, 44);
             uiButton6.TabIndex = 9;
             uiButton6.Text = "维修";
-            uiButton6.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton5
             // 
@@ -1469,7 +1469,6 @@
             uiButton5.Size = new Size(358, 44);
             uiButton5.TabIndex = 8;
             uiButton5.Text = "派遣维修";
-            uiButton5.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             uiButton5.Click += uiButton5_Click;
             // 
             // uiTimePicker2
@@ -1632,10 +1631,58 @@
             tabPage6.Font = new Font("微软雅黑", 15F, FontStyle.Bold, GraphicsUnit.Point);
             tabPage6.Location = new Point(0, 40);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1080, 664);
+            tabPage6.Size = new Size(200, 60);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "资源信息管理";
             tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // uiDataGridView12
+            // 
+            dataGridViewCellStyle46.BackColor = Color.FromArgb(235, 243, 255);
+            uiDataGridView12.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
+            uiDataGridView12.BackgroundColor = Color.White;
+            uiDataGridView12.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle47.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle47.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle47.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle47.ForeColor = Color.White;
+            dataGridViewCellStyle47.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle47.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle47.WrapMode = DataGridViewTriState.True;
+            uiDataGridView12.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle47;
+            uiDataGridView12.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle48.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle48.BackColor = SystemColors.Window;
+            dataGridViewCellStyle48.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle48.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle48.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle48.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle48.WrapMode = DataGridViewTriState.False;
+            uiDataGridView12.DefaultCellStyle = dataGridViewCellStyle48;
+            uiDataGridView12.EnableHeadersVisualStyles = false;
+            uiDataGridView12.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiDataGridView12.GridColor = Color.FromArgb(80, 160, 255);
+            uiDataGridView12.Location = new Point(609, 197);
+            uiDataGridView12.Name = "uiDataGridView12";
+            dataGridViewCellStyle49.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle49.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle49.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle49.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle49.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle49.SelectionForeColor = Color.White;
+            dataGridViewCellStyle49.WrapMode = DataGridViewTriState.True;
+            uiDataGridView12.RowHeadersDefaultCellStyle = dataGridViewCellStyle49;
+            uiDataGridView12.RowHeadersWidth = 51;
+            dataGridViewCellStyle50.BackColor = Color.White;
+            dataGridViewCellStyle50.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiDataGridView12.RowsDefaultCellStyle = dataGridViewCellStyle50;
+            uiDataGridView12.RowTemplate.Height = 29;
+            uiDataGridView12.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
+            uiDataGridView12.SelectedIndex = -1;
+            uiDataGridView12.Size = new Size(419, 157);
+            uiDataGridView12.StripeOddColor = Color.FromArgb(235, 243, 255);
+            uiDataGridView12.Style = Sunny.UI.UIStyle.Custom;
+            uiDataGridView12.TabIndex = 21;
             // 
             // uiComboBox3
             // 
@@ -1785,6 +1832,7 @@
             uiButton8.Size = new Size(174, 44);
             uiButton8.TabIndex = 7;
             uiButton8.Text = "消耗";
+            uiButton8.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton7
             // 
@@ -1795,6 +1843,7 @@
             uiButton7.Size = new Size(174, 44);
             uiButton7.TabIndex = 6;
             uiButton7.Text = "补货";
+            uiButton7.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             uiButton7.Click += uiButton7_Click;
             // 
             // label26
@@ -1969,53 +2018,6 @@
             uiDataGridView9.Style = Sunny.UI.UIStyle.Custom;
             uiDataGridView9.TabIndex = 0;
             // 
-            // uiDataGridView12
-            // 
-            dataGridViewCellStyle46.BackColor = Color.FromArgb(235, 243, 255);
-            uiDataGridView12.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
-            uiDataGridView12.BackgroundColor = Color.White;
-            uiDataGridView12.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle47.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle47.BackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle47.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle47.ForeColor = Color.White;
-            dataGridViewCellStyle47.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle47.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = DataGridViewTriState.True;
-            uiDataGridView12.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle47;
-            uiDataGridView12.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle48.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle48.BackColor = SystemColors.Window;
-            dataGridViewCellStyle48.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle48.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle48.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle48.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle48.WrapMode = DataGridViewTriState.False;
-            uiDataGridView12.DefaultCellStyle = dataGridViewCellStyle48;
-            uiDataGridView12.EnableHeadersVisualStyles = false;
-            uiDataGridView12.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            uiDataGridView12.GridColor = Color.FromArgb(80, 160, 255);
-            uiDataGridView12.Location = new Point(609, 197);
-            uiDataGridView12.Name = "uiDataGridView12";
-            dataGridViewCellStyle49.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle49.BackColor = Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle49.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle49.ForeColor = Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle49.SelectionBackColor = Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle49.SelectionForeColor = Color.White;
-            dataGridViewCellStyle49.WrapMode = DataGridViewTriState.True;
-            uiDataGridView12.RowHeadersDefaultCellStyle = dataGridViewCellStyle49;
-            uiDataGridView12.RowHeadersWidth = 51;
-            dataGridViewCellStyle50.BackColor = Color.White;
-            dataGridViewCellStyle50.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            uiDataGridView12.RowsDefaultCellStyle = dataGridViewCellStyle50;
-            uiDataGridView12.RowTemplate.Height = 29;
-            uiDataGridView12.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
-            uiDataGridView12.SelectedIndex = -1;
-            uiDataGridView12.Size = new Size(419, 157);
-            uiDataGridView12.StripeOddColor = Color.FromArgb(235, 243, 255);
-            uiDataGridView12.TabIndex = 21;
-            // 
             // FormMain
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -2054,10 +2056,10 @@
             ((System.ComponentModel.ISupportInitialize)uiDataGridView7).EndInit();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)uiDataGridView12).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView11).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView10).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiDataGridView12).EndInit();
             ResumeLayout(false);
         }
 
@@ -2137,7 +2139,6 @@
         private Label label15;
         private Sunny.UI.UIButton uiButton3;
         private Label label17;
-        private Sunny.UI.UITimePicker uiTimePicker1;
         private Sunny.UI.UIDataGridView uiDataGridView5;
         private Label label16;
         private Sunny.UI.UIDataGridView uiDataGridView6;
@@ -2179,5 +2180,6 @@
         private Label label33;
         private Sunny.UI.UIComboBox uiComboBox3;
         private Sunny.UI.UIDataGridView uiDataGridView12;
+        private Sunny.UI.UIDatetimePicker uiDatetimePicker1;
     }
 }

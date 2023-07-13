@@ -64,7 +64,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-VEMPUMO4;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -139,6 +139,23 @@ namespace WindGenerator
         private void uiButton7_Click(object sender, EventArgs e)
         {
             populate();
+        }
+
+        private void uiButton3_Click(object sender, EventArgs e)
+        {
+            //气象信息管理-查询按钮
+            SqlConnection con = getConnected();
+            string query = "select 温度,降水状况,出行建议 from 气象信息表 where 时间 = ' " + uiDatetimePicker1.Text + " '";
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            con.Close();
+            showTable(query, this.climateInfo, this.uiDataGridView5);
+        }
+
+        private void uiButton4_Click(object sender, EventArgs e)
+        {
+            //气象信息管理-预测按钮
+            
         }
     }
 }
