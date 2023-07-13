@@ -13,7 +13,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-VEMPUMO4;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -77,7 +77,7 @@ namespace WindGenerator
             }
             else if (flag == 1 && occupationComboBox.SelectedIndex == 2)
             {
-                MaintainerForm mf = new MaintainerForm();
+                MaintainerForm mf = new MaintainerForm(accountNumTextBox.Text);
                 mf.ShowDialog();
                 this.Close();
             }

@@ -318,7 +318,6 @@
             uiTabControl1.TabIndex = 0;
             uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
             uiTabControl1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            uiTabControl1.SelectedIndexChanged += uiTabControl1_SelectedIndexChanged;
             // 
             // emInfoTabPage
             // 
