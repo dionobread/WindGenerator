@@ -253,7 +253,6 @@
             uiTabControl1.TabIndex = 0;
             uiTabControl1.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
             uiTabControl1.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
-           
             // 
             // emInfoTabPage
             // 
@@ -638,7 +637,7 @@
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(33, 24);
+            toolStripLabel1.Size = new Size(33, 20);
             toolStripLabel1.Text = "0/0";
             // 
             // toolStripButton7
@@ -1177,6 +1176,7 @@
             uiButton4.Size = new Size(76, 27);
             uiButton4.TabIndex = 7;
             uiButton4.Text = "预测";
+            uiButton4.Click += uiButton4_Click;
             // 
             // uiButton3
             // 
@@ -1188,6 +1188,7 @@
             uiButton3.TabIndex = 6;
             uiButton3.Text = "查询";
             uiButton3.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            uiButton3.Click += uiButton3_Click;
             // 
             // label17
             // 
@@ -1447,9 +1448,6 @@
             label22.TabIndex = 10;
             label22.Text = "维护日志";
             // 
-            // uiButton6
-            // 
-           
             // uiButton5
             // 
             uiButton5.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -1624,8 +1622,6 @@
             tabPage6.Text = "资源信息管理";
             tabPage6.UseVisualStyleBackColor = true;
             // 
-
-
             // uiDataGridView12
             // 
             dataGridViewCellStyle46.BackColor = Color.FromArgb(235, 243, 255);
@@ -1674,8 +1670,6 @@
             uiDataGridView12.Style = Sunny.UI.UIStyle.Custom;
             uiDataGridView12.TabIndex = 21;
             // 
-
-
             // uiComboBox3
             // 
             uiComboBox3.DataSource = null;

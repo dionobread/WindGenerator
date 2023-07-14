@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace WindGenerator
@@ -68,7 +70,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-A15A8VDN;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-VEMPUMO4;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -195,7 +197,82 @@ namespace WindGenerator
         private void uiButton4_Click(object sender, EventArgs e)
         {
             //气象信息管理-预测按钮
+            SqlConnection connection = getConnected();
+            DateTime selectedDate = uiDatetimePicker1.Value;
+            DateTime startDate = selectedDate.AddHours(-24);
+            DateTime endDate = selectedDate;
+            DataTable dataTable1 = new DataTable();
+            string query = "SELECT 温度, 降水状况, 风速, 湿度 FROM 气象信息表 WHERE 时间 BETWEEN @startDate AND @endDate ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@startDate", startDate);
+            command.Parameters.AddWithValue("@endDate", endDate);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+            adapter.Fill(dataTable1);      //在datatable1中保存选定时间前24小时的气象信息
 
+            DataTable dataTable2 = new DataTable();
+            int numberOfHours = 5;  // 预测的小时数
+            dataTable2.Columns.Add("时间", typeof(DateTime));
+            dataTable2.Columns.Add("预测温度", typeof(double));
+            dataTable2.Columns.Add("预测降雨量", typeof(double));
+
+            // 获取温度和降雨量的均值和标准差
+            double temperatureMean = dataTable1.AsEnumerable().Average(row => row.Field<double>("温度"));
+            double temperatureStdDev = Math.Sqrt(dataTable1.AsEnumerable().Average(row 
+                => Math.Pow(row.Field<double>("温度") - temperatureMean, 2)));
+            double rainfallMean = dataTable1.AsEnumerable().Average(row => row.Field<double>("降水状况"));
+            double rainfallStdDev = Math.Sqrt(dataTable1.AsEnumerable().Average(row 
+                => Math.Pow(row.Field<double>("降水状况") - rainfallMean, 2)));
+
+            double PredictValue(double mean, double stdDev)
+            {
+                Random random = new Random();
+                double u1 = 1.0 - random.NextDouble();
+                double u2 = 1.0 - random.NextDouble();
+                double randomNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
+                if (mean + stdDev * randomNormal >= 0){return mean + stdDev * randomNormal;}
+                else{ return 0; }
+            }
+            // 预测的温度和降雨量列表
+            var predictedTemperatures = Enumerable.Range(0, numberOfHours).Select(i => 
+            PredictValue(temperatureMean, temperatureStdDev)).ToList();
+            var predictedRainfalls = Enumerable.Range(0, numberOfHours).Select(i => 
+            PredictValue(rainfallMean, rainfallStdDev)).ToList();
+
+            for (int i = 0; i < numberOfHours; i++)
+            {
+                dataTable2.Rows.Add(selectedDate.AddHours(1 + i), predictedTemperatures[i], predictedRainfalls[i]);
+            }
+
+            DataTable dataTable3 = new DataTable();
+            dataTable3.Columns.Add("时间", typeof(DateTime));
+            dataTable3.Columns.Add("预测温度", typeof(double));
+            dataTable3.Columns.Add("预测降雨量", typeof(double));
+            // 添加“出行建议”列
+            //DataColumn travelAdviceColumn = new DataColumn("出行建议", typeof(string));
+            //travelAdviceColumn.DefaultValue = "";
+            //dataTable3.Columns.Add(travelAdviceColumn);
+            dataTable3.Columns.Add("出行建议", typeof(string));
+            foreach (DataRow row in dataTable2.Rows)
+            {
+                int rainfall = Convert.ToInt32(row["预测降雨量"]);
+                
+                for (int i = 0; i < numberOfHours; i++)
+                {
+                    string travelAdvice = (predictedRainfalls[i] > 0) ? "不能出行" : "可以出行";
+                    dataTable3.Rows.Add(selectedDate.AddHours(1 + i), predictedTemperatures[i], predictedRainfalls[i], travelAdvice);
+                }
+
+            }
+
+            /*DataTable rowsDataTable = dataTable3.Clone();
+            for (int i = 0; i < 5 && i < dataTable3.Rows.Count; i++)
+            {
+                rowsDataTable.ImportRow(dataTable3.Rows[i]);
+            }*/
+
+            uiDataGridView6.DataSource = dataTable3;
+            connection.Close(); 
         }
 
         private void uiButton1_Click(object sender, EventArgs e)
@@ -225,6 +302,5 @@ namespace WindGenerator
             // FormMain_Load(sender, e);//窗体重载，显示数据更新效果
         }
 
-        
     }
 }
