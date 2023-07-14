@@ -31,6 +31,10 @@ namespace WindGenerator
         public FormMain()
         {
             InitializeComponent();
+
+            //设备信息管理桩位数据显示
+            showTable("select * from 桩位表", this.pilePosition, this.uiDataGridView1);
+
             // 气象信息管理数据显示
             showTable("select * from 气象信息表", this.climateInfo, this.uiDataGridView4);
 
@@ -64,7 +68,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-A15A8VDN;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -177,6 +181,50 @@ namespace WindGenerator
             populate();
         }
 
-      
+        private void uiButton3_Click(object sender, EventArgs e)
+        {
+            //气象信息管理-查询按钮
+            SqlConnection con = getConnected();
+            string query = "select 温度,降水状况,出行建议 from 气象信息表 where 时间 = ' " + uiDatetimePicker1.Text + " '";
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            con.Close();
+            showTable(query, this.climateInfo, this.uiDataGridView5);
+        }
+
+        private void uiButton4_Click(object sender, EventArgs e)
+        {
+            //气象信息管理-预测按钮
+
+        }
+
+        private void uiButton1_Click(object sender, EventArgs e)
+        {
+            //投入使用
+            SqlConnection con = getConnected();
+
+            String para0 = equipmentIdTextBox.Text;
+            String para1 = typeTextBox.Text;
+            String para2 = rateTextBox.Text;
+            String para3 = produceTextBox.Text;
+            DateTime para4 = DateTime.Parse(useTimeTimePicker.Text);
+            String para5 = pileTextBox.Text;
+
+            string sql = "insert into 设备信息表 (设备编号,设备类型,额定功率,生产厂家,投入使用时间,桩位号) values(@para0, @para1, @para2, @para3, @para4, @para5)";
+            SqlCommand cmd = new SqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("@para0", para0);
+            cmd.Parameters.AddWithValue("@para1", para1);
+            cmd.Parameters.AddWithValue("@para2", para2);
+            cmd.Parameters.AddWithValue("@para3", para3);
+            cmd.Parameters.AddWithValue("@para4", para4);
+            cmd.Parameters.AddWithValue("@para5", para5);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            // FormMain_Load(sender, e);//窗体重载，显示数据更新效果
+        }
+
+        
     }
 }
