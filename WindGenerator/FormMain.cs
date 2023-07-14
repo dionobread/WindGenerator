@@ -64,7 +64,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-VEMPUMO4;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -126,11 +126,47 @@ namespace WindGenerator
         {
             // 维修活动管理-派遣维修按钮
             SqlConnection con = getConnected();
+            string procedure = "Dispatch";
+            SqlCommand cmd = new SqlCommand();
 
+            SqlParameter maintainer_id = new SqlParameter("@maintainer_id", uiTextBox1.Text);
+            maintainer_id.Direction = ParameterDirection.Input;
+            SqlParameter ship_id = new SqlParameter("@ship_id", uiTextBox2.Text.ToString());
+            ship_id.Direction = ParameterDirection.Input;
+            SqlParameter start_time = new SqlParameter("@start_time", uiTimePicker2.Text.ToString());
+            start_time.Direction = ParameterDirection.Input;
+            SqlParameter maintenance_type = new SqlParameter("@maintenance_type", uiComboBox1.Text.ToString());
+            maintenance_type.Direction = ParameterDirection.Input;
+            SqlParameter facility_id = new SqlParameter("@facility_id", uiTextBox6.Text.ToString());
+            facility_id.Direction = ParameterDirection.Input;
+
+            cmd.Parameters.Add(maintainer_id);
+            cmd.Parameters.Add(ship_id);
+            cmd.Parameters.Add(start_time);
+            cmd.Parameters.Add(maintenance_type);
+            cmd.Parameters.Add(facility_id);
+
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.StoredProcedure; // 程序执行类型
+            cmd.CommandText = procedure;
+            cmd.ExecuteNonQuery(); // 执行存储过程
+
+            object obj = cmd.Parameters["@maintainer_id"].Value; // 接收存储过程输出的参数
+            string tmp_id = Convert.ToString(obj);
+            MessageBox.Show($"已将任务派遣给维修人员{tmp_id}", "任务派遣", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // 刷新表格
+            showTable("select * from 维修派工表", this.fixSent, this.uiDataGridView7);
+            showTable("select * from 维修记录表", this.fixLog, this.uiDataGridView8);
             // sql
             con.Close();
         }
-
+        private void uiButton6_Click(object sender, EventArgs e)
+        {
+            // 维修活动管理-派遣按钮
+            this.Invalidate();
+            this.Refresh();
+        }
         private void uiComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             filter();

@@ -75,7 +75,7 @@ namespace WindGenerator
             }
             else if (flag == 1 && occupationComboBox.SelectedIndex == 2)
             {
-                MaintainerForm mf = new MaintainerForm();
+                MaintainerForm mf = new MaintainerForm(accountNumTextBox.Text);
                 mf.ShowDialog();
                 this.Close();
             }
