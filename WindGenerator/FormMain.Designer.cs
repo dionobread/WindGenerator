@@ -1177,7 +1177,6 @@
             uiButton4.Size = new Size(76, 27);
             uiButton4.TabIndex = 7;
             uiButton4.Text = "预测";
-            uiButton4.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // uiButton3
             // 
@@ -1188,6 +1187,7 @@
             uiButton3.Size = new Size(76, 27);
             uiButton3.TabIndex = 6;
             uiButton3.Text = "查询";
+            uiButton3.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // label17
             // 
@@ -1447,6 +1447,9 @@
             label22.TabIndex = 10;
             label22.Text = "维护日志";
             // 
+            // uiButton6
+            // 
+           
             // uiButton5
             // 
             uiButton5.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -1621,6 +1624,8 @@
             tabPage6.Text = "资源信息管理";
             tabPage6.UseVisualStyleBackColor = true;
             // 
+
+
             // uiDataGridView12
             // 
             dataGridViewCellStyle46.BackColor = Color.FromArgb(235, 243, 255);
@@ -1669,6 +1674,8 @@
             uiDataGridView12.Style = Sunny.UI.UIStyle.Custom;
             uiDataGridView12.TabIndex = 21;
             // 
+
+
             // uiComboBox3
             // 
             uiComboBox3.DataSource = null;
