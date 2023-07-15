@@ -1622,6 +1622,8 @@
             tabPage6.Text = "资源信息管理";
             tabPage6.UseVisualStyleBackColor = true;
             // 
+
+
             // uiDataGridView12
             // 
             dataGridViewCellStyle46.BackColor = Color.FromArgb(235, 243, 255);
@@ -1670,6 +1672,8 @@
             uiDataGridView12.Style = Sunny.UI.UIStyle.Custom;
             uiDataGridView12.TabIndex = 21;
             // 
+
+
             // uiComboBox3
             // 
             uiComboBox3.DataSource = null;
