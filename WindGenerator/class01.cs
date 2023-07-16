@@ -14,7 +14,7 @@ namespace WindGenerator
         static SqlConnection conn;
         public static void connection()
         {
-            String connetStr = "Data Source = LAPTOP - VEMPUMO4; Initial Catalog = 海上风电场; Integrated Security = True";
+            String connetStr = "Data Source = LAPTOP - A15A8VDN; Initial Catalog = 海上风电场; Integrated Security = True";
             conn = new SqlConnection(connetStr);
             try
             {
