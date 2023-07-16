@@ -13,7 +13,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-VEMPUMO4;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -47,9 +47,13 @@ namespace WindGenerator
             SqlParameter re = new SqlParameter("@rel", SqlDbType.Int);
             re.Direction = ParameterDirection.Output;
 
+            SqlParameter occupation = new SqlParameter("@occupation", SqlDbType.Char, 20);
+            occupation.Direction = ParameterDirection.Output;
+
             cmd.Parameters.Add(account_name);
             cmd.Parameters.Add(pwd);
             cmd.Parameters.Add(re);
+            cmd.Parameters.Add(occupation);
 
             cmd.Connection = SqlCon;
             cmd.CommandType = CommandType.StoredProcedure; // 程序执行类型
@@ -57,29 +61,34 @@ namespace WindGenerator
             cmd.ExecuteNonQuery(); // 执行存储过程
 
             object obj = cmd.Parameters["@rel"].Value; // 接收存储过程输出的参数
+            object obj_o = cmd.Parameters["@occupation"].Value; 
             int flag = Convert.ToInt16(obj);
+            string occu = Convert.ToString(obj_o);
+            occu = occu.Replace(" ", "");
             if (flag == 0)
             {
                 MessageBox.Show("用户名或密码不正确！", "输入错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (flag == 1 && occupationComboBox.SelectedIndex == 0)
+            else if (flag == 1 && occupationComboBox.SelectedIndex == 0 && occupationComboBox.Text == occu)
             {
                 FormMain fm = new FormMain();
+                fm.ShowDialog();
+                this.Close();
             }
-            else if (flag == 1 && occupationComboBox.SelectedIndex == 1)
+            else if (flag == 1 && occupationComboBox.SelectedIndex == 1 && occupationComboBox.Text == occu)
             {
                 FormMain fm = new FormMain();
                 fm.emInfoTabPage.Parent = null; // 普通管理员不能访问人员管理页面
                 fm.ShowDialog();
                 this.Close();
             }
-            else if (flag == 1 && occupationComboBox.SelectedIndex == 2)
+            else if (flag == 1 && occupationComboBox.SelectedIndex == 2 && occupationComboBox.Text == occu)
             {
                 MaintainerForm mf = new MaintainerForm(accountNumTextBox.Text);
                 mf.ShowDialog();
                 this.Close();
             }
-            else
+            else if(flag == 1 && occupationComboBox.Text != occu)
             {
                 MessageBox.Show("用户名与职位不匹配！", "输入错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

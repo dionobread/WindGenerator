@@ -191,7 +191,7 @@ namespace WindGenerator
         private void uiButton4_Click(object sender, EventArgs e)
         {
             //气象信息管理-预测按钮
-            
+
         }
     }
 }
