@@ -19,7 +19,7 @@ namespace WindGenerator
         private DataTable compoentInfo = new DataTable(); // 部件信息表
         private DataTable shipInfo = new DataTable(); // 船舶信息表
         private DataTable climateInfo = new DataTable(); // 气象信息表
-        private DataTable equipmentInfo = new DataTable(); // 设备运行表
+        private DataTable equipmentInfo = new DataTable(); // 设备信息表
         private DataTable equipmentRun = new DataTable(); // 设备运行表
         private DataTable fixLog = new DataTable(); // 维修记录表
         private DataTable fixSent = new DataTable(); // 维修派工表
@@ -32,8 +32,9 @@ namespace WindGenerator
         {
             InitializeComponent();
 
-            //设备信息管理桩位数据显示
+            //设备信息管理数据显示
             showTable("select * from 桩位表", this.pilePosition, this.uiDataGridView1);
+            showTable("select * from 设备信息表", this.equipmentInfo, this.uiDataGridView14);
 
             // 气象信息管理数据显示
             showTable("select * from 气象信息表", this.climateInfo, this.uiDataGridView4);
@@ -213,6 +214,12 @@ namespace WindGenerator
             string sql = "insert into 设备信息表 (设备编号,设备类型,额定功率,生产厂家,投入使用时间,桩位号) values(@para0, @para1, @para2, @para3, @para4, @para5)";
             SqlCommand cmd = new SqlCommand(sql, con);
 
+            string sql_updatepile = "update 桩位表 set 占用状态 = '占用' where 桩位号 = (select 桩位号 from 设备信息表 where 桩位表.桩位号=设备信息表.桩位号)";
+            SqlCommand cmd0 = new SqlCommand(sql_updatepile, con);
+
+            string sql_updatepile2 = "update 桩位表 set 设备编号 = @para0 where 桩位号 = @para5";
+            SqlCommand cmd1 = new SqlCommand(sql_updatepile2, con);
+
             cmd.Parameters.AddWithValue("@para0", para0);
             cmd.Parameters.AddWithValue("@para1", para1);
             cmd.Parameters.AddWithValue("@para2", para2);
@@ -220,11 +227,59 @@ namespace WindGenerator
             cmd.Parameters.AddWithValue("@para4", para4);
             cmd.Parameters.AddWithValue("@para5", para5);
             cmd.ExecuteNonQuery();
+
+            cmd0.ExecuteNonQuery();
+
+            cmd1.Parameters.AddWithValue("@para5", para5);
+            cmd1.Parameters.AddWithValue("@para0", para0);
+            cmd1.ExecuteNonQuery();//必须声明标量变量
+
             con.Close();
 
-            // FormMain_Load(sender, e);//窗体重载，显示数据更新效果
+
+            // 刷新表格数据
+            showTable("select * from 桩位表", this.pilePosition, this.uiDataGridView1);
+            showTable("select * from 设备信息表", this.equipmentInfo, this.uiDataGridView14);
         }
 
-        
+        private void uiButton2_Click(object sender, EventArgs e)
+        {
+            //老化退役
+            SqlConnection con = getConnected();
+
+            String para0 = equipmentIdTextBox.Text;
+
+            string sql_delete = "delete from 设备信息表 where 设备编号 = @para0 ";
+            string sql_update = "update 桩位表 set 占用状态 = '空闲' ,设备编号 = NULL where 设备编号 = @para0";
+
+
+            SqlCommand cmd = new SqlCommand(sql_delete, con);
+            SqlCommand cmd1 = new SqlCommand(sql_update, con);
+
+            cmd.Parameters.AddWithValue("@para0", para0);
+            cmd1.Parameters.AddWithValue("@para0", para0);
+
+            cmd.ExecuteNonQuery();
+            cmd1.ExecuteNonQuery();
+
+            con.Close();
+
+            //刷新表格数据
+            showTable("select * from 桩位表", this.pilePosition, this.uiDataGridView1);
+            showTable("select * from 设备信息表", this.equipmentInfo, this.uiDataGridView14);
+
+        }
+
+        private void uiDataGridView14_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            equipmentIdTextBox.Text = uiDataGridView14.Rows[e.RowIndex].Cells[0].Value.ToString();
+            typeTextBox.Text = uiDataGridView14.Rows[e.RowIndex].Cells[1].Value.ToString();
+            rateTextBox.Text = uiDataGridView14.Rows[e.RowIndex].Cells[2].Value.ToString();
+            produceTextBox.Text = uiDataGridView14.Rows[e.RowIndex].Cells[3].Value.ToString();
+            useTimeTimePicker.Text = uiDataGridView14.Rows[e.RowIndex].Cells[4].Value.ToString();
+            pileTextBox.Text = uiDataGridView14.Rows[e.RowIndex].Cells[5].Value.ToString();
+        }
+
+
     }
 }
