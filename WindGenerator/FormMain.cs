@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+using Newtonsoft.Json;
 
 namespace WindGenerator
 {
@@ -34,6 +35,15 @@ namespace WindGenerator
         {
             InitializeComponent();
 
+            //设备运行情况表格显示
+            showTable("select * from 设备运行表", this.equipmentInfo, this.uiDataGridView2);
+
+            //故障设备信息显示
+            showTable("select * from 设备运行表 where 运行状态='故障'", this.equipmentInfo, this.uiDataGridView3);
+
+            //人员信息管理数据显示
+            showTable("select * from 职工信息表", this.employeeInfo, this.infoDataGridView);
+
             //设备信息管理数据显示
             showTable("select * from 桩位表", this.pilePosition, this.uiDataGridView1);
             showTable("select * from 设备信息表", this.equipmentInfo, this.uiDataGridView14);
@@ -49,7 +59,8 @@ namespace WindGenerator
             showTable("Select * from 部件信息表 ", this.compoentInfo, this.uiDataGridView9);//显示部件信息
             showTable("Select * from 船舶信息表 ", this.shipInfo, this.uiDataGridView11);//显示船舶信息
             showTable("Select * from 物资信息表 ", this.resourceInfo, this.uiDataGridView10);//显示物资信息
-            populate();
+            populate1();
+            populate2();
         }
 
 
@@ -71,7 +82,7 @@ namespace WindGenerator
         public SqlConnection getConnected()
         {
             SqlConnection connection;
-            string connectionString = "Data Source=LAPTOP-VEMPUMO4;Initial Catalog=海上风电场;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-N3CG8QGT\\MSSQLSERVER01;Initial Catalog=海上风电场;Integrated Security=True";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -87,8 +98,7 @@ namespace WindGenerator
 
             return connection;
         }
-
-        public void populate()
+        public void populate1()//未分类船舶信息显示
         {
             SqlConnection connection = getConnected();
             string query = "select * from 船舶信息表";
@@ -100,8 +110,21 @@ namespace WindGenerator
             connection.Close();
         }
 
-        public void filter()
+        public void populate2()//未分类物资信息显示
         {
+            SqlConnection connection = getConnected();
+            string query1 = "select * from 物资信息表";
+            SqlDataAdapter sda1 = new SqlDataAdapter(query1, connection);
+            SqlCommandBuilder builder1 = new SqlCommandBuilder(sda1);
+            var ds1 = new DataSet();
+            sda1.Fill(ds1);
+            uiDataGridView13.DataSource = ds1.Tables[0];
+            connection.Close();
+        }
+
+        public void filter()//船舶信息分类显示
+        {
+
             SqlConnection connection = getConnected();
             string query = "select * from 船舶信息表 where 船舶型号 = '" + uiComboBox2.SelectedItem.ToString() + "' ";
             SqlDataAdapter sda = new SqlDataAdapter(query, connection);
@@ -112,6 +135,74 @@ namespace WindGenerator
             connection.Close();
         }
 
+        public void filter1()//物资信息分类显示
+        {
+
+            SqlConnection connection = getConnected();
+            string query1 = "select * from 物资信息表 where 名称 = '" + uiComboBox3.SelectedItem.ToString() + "' ";
+            SqlDataAdapter sda1 = new SqlDataAdapter(query1, connection);
+            SqlCommandBuilder builder1 = new SqlCommandBuilder(sda1);
+            var ds1 = new DataSet();
+            sda1.Fill(ds1);
+            uiDataGridView13.DataSource = ds1.Tables[0];
+            connection.Close();
+        }
+        private void uiComboBox2_SelectedIndexChanged(object sender, EventArgs e)//执行船舶分类显示和空闲数量统计
+        {
+            filter();
+
+            SqlConnection connection = getConnected();
+            SqlDataAdapter sda = new SqlDataAdapter("select count(船舶状态)from 船舶信息表 where 船舶型号 = '" + uiComboBox2.SelectedItem.ToString() + "'and 船舶状态 = '空闲' ", connection);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            uiTextBox5.Text = dt.Rows[0][0].ToString();
+            connection.Close();
+
+        }
+
+        private void uiComboBox3_SelectedIndexChanged(object sender, EventArgs e)//执行物资分类显示
+        {
+            filter1();
+        }
+
+        private void uiDataGridView13_CellContentClick(object sender, DataGridViewCellEventArgs e)//物资数量显示
+        {
+            uiTextBox4.Text = uiDataGridView13.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+
+        private void uiButton7_Click(object sender, EventArgs e)//物资补货
+        {
+            SqlConnection con = getConnected();
+
+            string sql = "UPDATE 物资信息表 set 数量=数量+1 where 名称 = '" + uiComboBox3.SelectedItem.ToString() + "' ";
+
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            showTable("Select * from 物资信息表 ", this.resourceInfo, this.uiDataGridView13);//显示物资信息
+            populate2();//物资信息显示方法
+
+            MessageBox.Show("补货完成");
+        }
+
+        private void uiButton8_Click(object sender, EventArgs e)//物资消耗
+        {
+            SqlConnection con = getConnected();
+
+            string sql = "UPDATE 物资信息表 set 数量=数量-1 where 名称 = '" + uiComboBox3.SelectedItem.ToString() + "' ";
+
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            showTable("Select * from 物资信息表 ", this.resourceInfo, this.uiDataGridView13);//显示物资信息
+            populate2();//物资信息显示方法
+
+            MessageBox.Show("消耗完成");
+        }
+
+        
         private void label28_Click(object sender, EventArgs e)
         {
 
@@ -174,15 +265,7 @@ namespace WindGenerator
             this.Invalidate();
             this.Refresh();
         }
-        private void uiComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            filter();
-        }
 
-        private void uiButton7_Click(object sender, EventArgs e)
-        {
-            populate();
-        }
 
         private void uiButton3_Click(object sender, EventArgs e)
         {
@@ -197,83 +280,110 @@ namespace WindGenerator
 
         private void uiButton4_Click(object sender, EventArgs e)
         {
-            //气象信息管理-预测按钮
-            SqlConnection connection = getConnected();
-            DateTime selectedDate = uiDatetimePicker1.Value;
-            DateTime startDate = selectedDate.AddHours(-24);
-            DateTime endDate = selectedDate;
-            DataTable dataTable1 = new DataTable();
-            string query = "SELECT 温度, 降水状况, 风速, 湿度 FROM 气象信息表 WHERE 时间 BETWEEN @startDate AND @endDate ";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@startDate", startDate);
-            command.Parameters.AddWithValue("@endDate", endDate);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-            adapter.Fill(dataTable1);      //在datatable1中保存选定时间前24小时的气象信息
+            DataTable input_data = new DataTable(); // 输入数据
 
-            DataTable dataTable2 = new DataTable();
-            int numberOfHours = 5;  // 预测的小时数
-            dataTable2.Columns.Add("时间", typeof(DateTime));
-            dataTable2.Columns.Add("预测温度", typeof(double));
-            dataTable2.Columns.Add("预测降雨量", typeof(double));
+            SqlConnection con = getConnected();
+            string query = "select top 10 温度, 降水状况, 风速, 湿度 from 气象信息表 order by 时间 desc;";
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            DataTable tmp = new DataTable();
+            tmp.Load(reader);
+            input_data = tmp;
+            con.Close();
 
-            // 获取温度和降雨量的均值和标准差
-            double temperatureMean = dataTable1.AsEnumerable().Average(row => row.Field<double>("温度"));
-            double temperatureStdDev = Math.Sqrt(dataTable1.AsEnumerable().Average(row 
-                => Math.Pow(row.Field<double>("温度") - temperatureMean, 2)));
-            double rainfallMean = dataTable1.AsEnumerable().Average(row => row.Field<double>("降水状况"));
-            double rainfallStdDev = Math.Sqrt(dataTable1.AsEnumerable().Average(row 
-                => Math.Pow(row.Field<double>("降水状况") - rainfallMean, 2)));
+            string csvFilePath = "input_data.csv";
+            SaveDataTableToCsv(input_data, csvFilePath);
 
-            double PredictValue(double mean, double stdDev)
+            // 将datatable转为数组
+            int rowCount = input_data.Rows.Count;
+            int colCount = input_data.Columns.Count;
+            object[,] dataArray = new object[rowCount, colCount];
+            for (int i = 0; i < rowCount; i++)
             {
-                Random random = new Random();
-                double u1 = 1.0 - random.NextDouble();
-                double u2 = 1.0 - random.NextDouble();
-                double randomNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
-                if (mean + stdDev * randomNormal >= 0){return mean + stdDev * randomNormal;}
-                else{ return 0; }
-            }
-            // 预测的温度和降雨量列表
-            var predictedTemperatures = Enumerable.Range(0, numberOfHours).Select(i => 
-            PredictValue(temperatureMean, temperatureStdDev)).ToList();
-            var predictedRainfalls = Enumerable.Range(0, numberOfHours).Select(i => 
-            PredictValue(rainfallMean, rainfallStdDev)).ToList();
-
-            for (int i = 0; i < numberOfHours; i++)
-            {
-                dataTable2.Rows.Add(selectedDate.AddHours(1 + i), predictedTemperatures[i], predictedRainfalls[i]);
-            }
-
-            DataTable dataTable3 = new DataTable();
-            dataTable3.Columns.Add("时间", typeof(DateTime));
-            dataTable3.Columns.Add("预测温度", typeof(double));
-            dataTable3.Columns.Add("预测降雨量", typeof(double));
-            // 添加“出行建议”列
-            //DataColumn travelAdviceColumn = new DataColumn("出行建议", typeof(string));
-            //travelAdviceColumn.DefaultValue = "";
-            //dataTable3.Columns.Add(travelAdviceColumn);
-            dataTable3.Columns.Add("出行建议", typeof(string));
-            foreach (DataRow row in dataTable2.Rows)
-            {
-                int rainfall = Convert.ToInt32(row["预测降雨量"]);
-                
-                for (int i = 0; i < numberOfHours; i++)
+                DataRow row = input_data.Rows[i];
+                for (int j = 0; j < colCount; j++)
                 {
-                    string travelAdvice = (predictedRainfalls[i] > 0) ? "不能出行" : "可以出行";
-                    dataTable3.Rows.Add(selectedDate.AddHours(1 + i), predictedTemperatures[i], predictedRainfalls[i], travelAdvice);
+                    dataArray[i, j] = row[j];
                 }
-
             }
 
-            /*DataTable rowsDataTable = dataTable3.Clone();
-            for (int i = 0; i < 5 && i < dataTable3.Rows.Count; i++)
-            {
-                rowsDataTable.ImportRow(dataTable3.Rows[i]);
-            }*/
+            //调用Python程序
+            Process p = new Process();
+            string filePath = "LSTM/main.py";
+            p.StartInfo.FileName = "LSTM/pytorch_inter/python.exe";
+            p.StartInfo.Arguments = filePath;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardError = true;
+            p.EnableRaisingEvents = true;
 
-            uiDataGridView6.DataSource = dataTable3;
-            connection.Close(); 
+            p.Start();
+
+            StreamReader sReader = p.StandardOutput;
+            string output = sReader.ReadToEnd();
+
+            StreamReader errorReader = p.StandardError;
+            string errorOutput = errorReader.ReadToEnd();
+
+            p.WaitForExit();
+            p.Close();
+            p.Dispose();
+
+            MessageBox.Show("预测完成", "天气预测", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            DataTable output_data = new DataTable();
+            output_data.Columns.Add("温度", typeof(double));
+            output_data.Columns.Add("降水状况", typeof(double));
+            output_data.Columns.Add("风速", typeof(double));
+            output_data.Columns.Add("湿度", typeof(double));
+
+            // 分割字符串
+            string[] rows = output.Split(new string[] { "]\r\n [" }, StringSplitOptions.RemoveEmptyEntries);
+
+            // 解析每一行并添加到DataTable
+            foreach (string row in rows)
+            {
+                // 去除多余的空格和"]"字符
+                string cleanedRow = row.Replace("]", "").Replace("[", "").Trim();
+                // 分割每个值
+                string[] values = cleanedRow.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // 将值添加到DataRow
+                DataRow dataRow = output_data.NewRow();
+                dataRow["温度"] = double.Parse(values[0]);
+                dataRow["降水状况"] = double.Parse(values[1]);
+                dataRow["风速"] = double.Parse(values[2]);
+                dataRow["湿度"] = double.Parse(values[3]);
+                output_data.Rows.Add(dataRow);
+            }
+
+            uiDataGridView6.DataSource = output_data;
+
+        }
+
+        static void SaveDataTableToCsv(DataTable dataTable, string filePath)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // 写入表头
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                sb.Append(column.ColumnName).Append(",");
+            }
+            sb.AppendLine();
+
+            // 写入数据行
+            foreach (DataRow row in dataTable.Rows)
+            {
+                foreach (var item in row.ItemArray)
+                {
+                    sb.Append(item.ToString()).Append(",");
+                }
+                sb.AppendLine();
+            }
+
+            File.WriteAllText(filePath, sb.ToString());
         }
 
         private void uiButton1_Click(object sender, EventArgs e)
@@ -357,6 +467,205 @@ namespace WindGenerator
             pileTextBox.Text = uiDataGridView14.Rows[e.RowIndex].Cells[5].Value.ToString();
         }
 
+        //人员信息管理
 
+        Byte[] imageByte = null;
+        BindingSource bs = new BindingSource();
+
+
+
+        private void emInfoTabPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiDataGridView7_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        //上传头像
+        private void uiButton6_Click_1(object sender, EventArgs e)
+        {
+            string path = "";
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {//根据打开的图像文件创建原始图像大小的Bitmap 对象
+                Bitmap image = new Bitmap(openFileDialog1.FileName);
+                //按比例缩放显示（因为Picture 的SizeMode 属性为Zoom）,但原始图像大小未变
+                pictureBox.Image = image;
+                path = openFileDialog1.FileName;
+                //paras[5] = imagepath;
+
+                using (FileStream filestream = new FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read, FileShare.ReadWrite))
+                {
+                    imageByte = new byte[filestream.Length];
+                    filestream.Read(imageByte, 0, imageByte.Length);//将图片数据读入比特数组存储
+                }
+                MemoryStream ms = new MemoryStream(imageByte);//创建图片数据流
+                Bitmap bmap = new Bitmap(ms);//获取图片
+                ms.Close();
+                pictureBox.Image = bmap;
+            }
+        }
+
+        private void uiButton9_Click_1(object sender, EventArgs e)
+        {
+            string path = "";
+
+            Image image = pictureBox.Image;
+            Bitmap bitmap = new Bitmap(image);
+            byte[] imageBytes;
+            MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            imageBytes = ms.ToArray();
+
+            string account = accountTextBox.Text;
+            string name = nameTextBox.Text;
+            string sex = maleRadioButton.Text;
+            if (maleRadioButton.Checked)
+            {
+                sex = maleRadioButton.Text;
+            }
+            if (femaleRadioButton.Checked)
+            {
+                sex = femaleRadioButton.Text;
+            }
+            string birth = birthDatetimePicker.Text;
+            string address = addressTextBox.Text;
+            string dep = depComboBox.Text;
+
+            SqlConnection con = getConnected();
+
+
+            string query = "update 职工信息表 set 账号=@account, 姓名= @name, 性别=@sex, 出生日期=@birth,家庭住址= @address," +
+                            "部门类型=@dep, 头像=@imageBytes" + " where 账号=@account";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@account", account);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@sex", sex);
+            cmd.Parameters.AddWithValue("@birth", birth);
+            cmd.Parameters.AddWithValue("@address", address);
+            cmd.Parameters.AddWithValue("@dep", dep);
+            cmd.Parameters.AddWithValue("@imageBytes", imageBytes);
+            cmd.ExecuteNonQuery();
+            //人员信息管理数据显示
+            showTable("select * from 职工信息表", this.employeeInfo, this.infoDataGridView);
+            con.Close();
+        }
+
+        private void importButton_Click_1(object sender, EventArgs e)
+        {
+            string path = "";
+
+            Image image = pictureBox.Image;
+            Bitmap bitmap = new Bitmap(image);
+            byte[] imageBytes;
+            MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            imageBytes = ms.ToArray();
+
+            string account = accountTextBox.Text;
+            string name = nameTextBox.Text;
+            string sex = maleRadioButton.Text;
+            if (maleRadioButton.Checked)
+            {
+                sex = maleRadioButton.Text;
+            }
+            if (femaleRadioButton.Checked)
+            {
+                sex = femaleRadioButton.Text;
+            }
+            string birth = birthDatetimePicker.Text;
+            string address = addressTextBox.Text;
+            string dep = depComboBox.Text;
+
+            SqlConnection con = getConnected();
+
+
+            string query = "insert into 职工信息表([账号], [姓名], [性别], [出生日期], " +
+                            "[家庭住址], [部门类型], [头像])" +
+                            "values(@account, @name, @sex, @birth, @address," +
+                            "@dep, @imageBytes)";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@account", account);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@sex", sex);
+            cmd.Parameters.AddWithValue("@birth", birth);
+            cmd.Parameters.AddWithValue("@address", address);
+            cmd.Parameters.AddWithValue("@dep", dep);
+            cmd.Parameters.AddWithValue("@imageBytes", imageBytes);
+            cmd.ExecuteNonQuery();
+            //人员信息管理数据显示
+            showTable("select * from 职工信息表", this.employeeInfo, this.infoDataGridView);
+            con.Close();
+        }
+
+        private void removeButton_Click_1(object sender, EventArgs e)
+        {
+            string account = accountTextBox.Text;
+            SqlConnection con = getConnected();
+            string query = "delete from 职工信息表 where 账号=@account";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@account", account);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("记录删除成功！");
+            //人员信息管理数据显示
+            showTable("select * from 职工信息表", this.employeeInfo, this.infoDataGridView);
+            con.Close();
+        }
+
+        private void infoDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                accountTextBox.Text = infoDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                nameTextBox.Text = infoDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                //if (infoDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString() == '男'.ToString())
+                char male = '男';
+                string strmale = male.ToString();
+                string findmale = infoDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string newfindmale = findmale.Replace(" ", "");
+                if (newfindmale == strmale)
+                {
+                    maleRadioButton.Checked = true;
+                    femaleRadioButton.Checked = false;
+                }
+                else
+                {
+                    femaleRadioButton.Checked = true;
+                    maleRadioButton.Checked = false;
+                    //MessageBox.Show(strmale);
+                }
+                birthDatetimePicker.Text = infoDataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
+                addressTextBox.Text = infoDataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+                depComboBox.Text = infoDataGridView.Rows[e.RowIndex].Cells[5].Value.ToString();
+                if (infoDataGridView.Rows[e.RowIndex].Cells[6].Value.ToString() != "")
+                {
+                    byte[] imagebytes = (byte[])infoDataGridView.Rows[e.RowIndex].Cells[6].Value;
+                    MemoryStream ms = new MemoryStream(imagebytes);//创建图片数据流
+                    Bitmap bmap = new Bitmap(ms);//获取图片
+                    ms.Close();
+                    pictureBox.Image = bmap;
+                    //pictureBox1.Image = Image.FromFile(@dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void checkButton_Click_1(object sender, EventArgs e)
+        {
+            //故障设备信息显示--刷新
+            showTable("select * from 设备运行表 where 运行状态='故障'", this.equipmentInfo, this.uiDataGridView3);
+        }
+
+       
+        
+        
     }
 }
